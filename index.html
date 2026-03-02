@@ -388,7 +388,7 @@
     .upload-area svg { margin-bottom: 0.5rem; opacity: 0.5; }
     .upload-area p { font-size: 0.8rem; }
 
-    #igImageDisplay { width: 100%; height: 100%; object-fit: cover; display: none; }
+    /* ig-image handled by carousel */
 
     .ig-actions {
       display: flex;
@@ -588,6 +588,71 @@
     .tool-card.youtube::before { background: linear-gradient(135deg, rgba(255,0,0,0.08), transparent); }
     .tool-card.youtube:hover { border-color: rgba(255,0,0,0.25); }
     .tool-card.youtube::before { opacity: 1; }
+
+    .tool-card.reddit::before { background: linear-gradient(135deg, rgba(255,69,0,0.08), transparent); }
+    .tool-card.reddit:hover { border-color: rgba(255,69,0,0.35); }
+    .tool-card.reddit::before { opacity: 1; }
+
+    .tool-card.pinterest::before { background: linear-gradient(135deg, rgba(230,0,35,0.08), transparent); }
+    .tool-card.pinterest:hover { border-color: rgba(230,0,35,0.3); }
+    .tool-card.pinterest::before { opacity: 1; }
+
+    /* ─── ENGAGEMENT INPUTS ─── */
+    .engagement-controls {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 0.5rem;
+      margin-top: 0.5rem;
+    }
+    .engagement-field { display: flex; flex-direction: column; gap: 4px; }
+    .engagement-field label {
+      font-size: 0.7rem;
+      font-weight: 600;
+      color: var(--muted);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      display: flex; align-items: center; gap: 4px;
+    }
+    .engagement-field input {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 0.45rem 0.6rem;
+      color: var(--text);
+      font-family: var(--font-body);
+      font-size: 0.82rem;
+      width: 100%;
+      outline: none;
+      transition: border-color 0.2s;
+      text-align: center;
+      font-weight: 600;
+    }
+    .engagement-field input:focus { border-color: rgba(255,60,110,0.5); }
+
+    /* Like animation */
+    .ig-action-btn.liked svg path { fill: var(--accent); stroke: var(--accent); }
+    .ig-action-btn.liked { color: var(--accent); }
+    .heart-pop { animation: heartPop 0.35s cubic-bezier(0.36, 0.07, 0.19, 0.97) both; }
+    @keyframes heartPop {
+      0% { transform: scale(1); }
+      40% { transform: scale(1.5); }
+      70% { transform: scale(0.85); }
+      100% { transform: scale(1); }
+    }
+
+    /* Likes count display */
+    .ig-likes-row {
+      padding: 0 1rem 0.2rem;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    /* Bookmark on right of actions */
+    .ig-actions { justify-content: flex-start; position: relative; }
+    .ig-bookmark {
+      margin-left: auto;
+    }
 
     .tool-icon {
       width: 52px; height: 52px;
@@ -952,7 +1017,201 @@
     }
     .reveal.visible { opacity: 1; transform: translateY(0); }
 
-    /* ─── RESPONSIVE ─── */
+    /* ─── MULTI-PHOTO CAROUSEL ─── */
+    .ig-carousel {
+      position: relative;
+      aspect-ratio: 1;
+      overflow: hidden;
+      background: linear-gradient(135deg, #1e1e32, #2a1e3a, #1e2a32);
+    }
+
+    .ig-slides {
+      display: flex;
+      width: 100%;
+      height: 100%;
+      transition: transform 0.38s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .ig-slide {
+      min-width: 100%;
+      height: 100%;
+      flex-shrink: 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .ig-slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* Delete button on each slide */
+    .ig-slide-delete {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      background: rgba(0,0,0,0.55);
+      border: none;
+      color: #fff;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+      opacity: 0;
+      transition: opacity 0.2s;
+      z-index: 10;
+      backdrop-filter: blur(4px);
+    }
+    .ig-slide:hover .ig-slide-delete { opacity: 1; }
+
+    .ig-slide-empty {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.4rem;
+      color: var(--muted);
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .ig-slide-empty:hover { background: rgba(255,255,255,0.03); }
+    .ig-slide-empty svg { opacity: 0.45; }
+    .ig-slide-empty p { font-size: 0.82rem; }
+    .ig-upload-hint-sub { font-size: 0.72rem; color: rgba(136,136,160,0.6); }
+
+    /* Arrows */
+    .ig-carousel-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background: rgba(0,0,0,0.5);
+      border: none;
+      color: #fff;
+      cursor: pointer;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 10;
+      transition: background 0.2s, transform 0.15s;
+      backdrop-filter: blur(6px);
+    }
+    .ig-carousel-arrow:hover { background: rgba(0,0,0,0.75); transform: translateY(-50%) scale(1.08); }
+    .ig-arrow-prev { left: 8px; }
+    .ig-arrow-next { right: 8px; }
+    .ig-carousel-arrow.visible { display: flex; }
+
+    /* Dots */
+    .ig-dots {
+      position: absolute;
+      bottom: 8px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 5px;
+      z-index: 10;
+    }
+    .ig-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.4);
+      transition: background 0.2s, transform 0.2s;
+      cursor: pointer;
+    }
+    .ig-dot.active { background: #fff; transform: scale(1.25); }
+
+    /* Photo count badge */
+    .ig-photo-count {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: rgba(0,0,0,0.55);
+      color: #fff;
+      font-size: 0.72rem;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 50px;
+      backdrop-filter: blur(4px);
+      z-index: 10;
+    }
+
+    /* Multiple images badge on top-right of carousel (Instagram-style stack icon) */
+    .ig-multi-badge {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      z-index: 10;
+    }
+
+    /* Thumbnail strip below controls */
+    .photo-strip-wrap {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 0.2rem;
+    }
+
+    .photo-strip {
+      display: flex;
+      gap: 6px;
+      overflow-x: auto;
+      scrollbar-width: none;
+      flex: 1;
+    }
+    .photo-strip::-webkit-scrollbar { display: none; }
+
+    .strip-thumb {
+      width: 42px;
+      height: 42px;
+      border-radius: 7px;
+      overflow: hidden;
+      flex-shrink: 0;
+      cursor: pointer;
+      border: 2px solid transparent;
+      transition: border-color 0.2s, transform 0.15s;
+      position: relative;
+    }
+    .strip-thumb:hover { transform: scale(1.05); }
+    .strip-thumb.active { border-color: var(--accent); }
+    .strip-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+    .strip-add-btn {
+      width: 42px;
+      height: 42px;
+      border-radius: 7px;
+      border: 1px dashed rgba(255,60,110,0.4);
+      background: rgba(255,60,110,0.06);
+      color: var(--accent);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition: background 0.2s;
+    }
+    .strip-add-btn:hover { background: rgba(255,60,110,0.14); }
+
+    /* Swipe hint */
+    .ig-swipe-hint {
+      position: absolute;
+      bottom: 22px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 0.65rem;
+      color: rgba(255,255,255,0.5);
+      pointer-events: none;
+      white-space: nowrap;
+      display: none;
+    }
     @media (max-width: 900px) {
       #hero { grid-template-columns: 1fr; padding-top: 100px; gap: 3rem; }
       .hero-preview { order: -1; }
@@ -1045,28 +1304,44 @@
           </div>
         </div>
 
-        <div class="ig-image-placeholder" id="igImageArea">
-          <img id="igImageDisplay" alt="Your uploaded post image" />
-          <div class="upload-area" id="igUploadHint" onclick="document.getElementById('igFileInput').click()">
-            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
-            <p>Click to upload photo</p>
+        <!-- Multi-photo carousel -->
+        <div class="ig-carousel" id="igCarousel">
+          <div class="ig-slides" id="igSlides">
+            <div class="ig-slide ig-slide-empty" id="igEmptySlide" onclick="document.getElementById('igFileInput').click()">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+              <p>Click to add photos</p>
+              <span class="ig-upload-hint-sub">Up to 10 photos</span>
+            </div>
           </div>
+          <button class="ig-carousel-arrow ig-arrow-prev" id="igPrev" onclick="carouselNav(-1)" aria-label="Previous photo">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="15 18 9 12 15 6"/></svg>
+          </button>
+          <button class="ig-carousel-arrow ig-arrow-next" id="igNext" onclick="carouselNav(1)" aria-label="Next photo">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="9 18 15 12 9 6"/></svg>
+          </button>
+          <div class="ig-dots" id="igDots"></div>
+          <div class="ig-photo-count" id="igPhotoCount" style="display:none;">1 / 1</div>
         </div>
-        <input type="file" id="igFileInput" accept="image/*" />
+        <input type="file" id="igFileInput" accept="image/*" multiple />
 
         <div class="ig-actions">
-          <button class="ig-action-btn" aria-label="Like">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
-            <span>1.2k</span>
+          <button class="ig-action-btn" id="igLikeBtn" aria-label="Like" onclick="toggleLike()">
+            <svg id="igHeartSvg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
           </button>
           <button class="ig-action-btn" aria-label="Comment">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-            <span>48</span>
+            <span id="igCommentDisplay">48</span>
           </button>
           <button class="ig-action-btn" aria-label="Share">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+            <span id="igShareDisplay">12</span>
+          </button>
+          <button class="ig-action-btn ig-bookmark" aria-label="Save">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
           </button>
         </div>
+
+        <div class="ig-likes-row" id="igLikesRow">1,200 likes</div>
 
         <div class="ig-caption">
           <span id="igCaptionUsernameDisplay">your_username</span>
@@ -1077,7 +1352,27 @@
       <div class="preview-controls">
         <input type="text" class="preview-input" id="igUsernameInput" placeholder="Username (e.g. @yourname)" oninput="updateIgPreview()" />
         <textarea class="preview-input" id="igCaptionInput" rows="2" placeholder="Your caption... #hashtag" oninput="updateIgPreview()" style="resize:none"></textarea>
-        <button class="preview-upload-btn" onclick="document.getElementById('igFileInput').click()">📷 Upload your photo</button>
+        <div class="engagement-controls">
+          <div class="engagement-field">
+            <label>❤️ Likes</label>
+            <input type="text" id="igLikesInput" value="1,200" oninput="updateEngagement()" placeholder="1,200" />
+          </div>
+          <div class="engagement-field">
+            <label>💬 Comments</label>
+            <input type="text" id="igCommentsInput" value="48" oninput="updateEngagement()" placeholder="48" />
+          </div>
+          <div class="engagement-field">
+            <label>📤 Shares</label>
+            <input type="text" id="igSharesInput" value="12" oninput="updateEngagement()" placeholder="12" />
+          </div>
+        </div>
+        <div class="photo-strip-wrap">
+          <div class="photo-strip" id="igPhotoStrip"></div>
+          <button class="strip-add-btn" id="igAddMoreBtn" onclick="document.getElementById('igFileInput').click()" style="display:none;" title="Add more photos">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          </button>
+        </div>
+        <button class="preview-upload-btn" id="igUploadMainBtn" onclick="document.getElementById('igFileInput').click()">📷 Add photos to feed (up to 10)</button>
       </div>
     </div>
   </div>
@@ -1168,7 +1463,23 @@
       <span class="tool-badge tag-free">Free</span>
     </a>
 
-  </div>
+    <a href="#tools" class="tool-card reddit reveal" style="transition-delay:0.3s" aria-label="Reddit Post Preview Tool">
+      <div class="tool-icon" style="background: rgba(255,69,0,0.1);">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="#ff4500"><path d="M12 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0zm5.01 4.744c.688 0 1.25.561 1.25 1.249a1.25 1.25 0 0 1-2.498.056l-2.597-.547-.8 3.747c1.824.07 3.48.632 4.674 1.488.308-.309.73-.491 1.207-.491.968 0 1.754.786 1.754 1.754 0 .716-.435 1.333-1.01 1.614a3.111 3.111 0 0 1 .042.52c0 2.694-3.13 4.87-7.004 4.87-3.874 0-7.004-2.176-7.004-4.87 0-.183.015-.366.043-.534A1.748 1.748 0 0 1 4.028 12c0-.968.786-1.754 1.754-1.754.463 0 .898.196 1.207.49 1.207-.883 2.878-1.43 4.744-1.487l.885-4.182a.342.342 0 0 1 .14-.197.35.35 0 0 1 .238-.042l2.906.617a1.214 1.214 0 0 1 1.108-.701zM9.25 12C8.561 12 8 12.562 8 13.25c0 .687.561 1.248 1.25 1.248.687 0 1.248-.561 1.248-1.249 0-.688-.561-1.249-1.249-1.249zm5.5 0c-.687 0-1.248.561-1.248 1.25 0 .687.561 1.248 1.249 1.248.688 0 1.249-.561 1.249-1.249 0-.687-.562-1.249-1.25-1.249zm-5.466 3.99a.327.327 0 0 0-.231.094.33.33 0 0 0 0 .463c.842.842 2.484.913 2.961.913.477 0 2.105-.056 2.961-.913a.361.361 0 0 0 .029-.463.33.33 0 0 0-.464 0c-.547.533-1.684.73-2.512.73-.828 0-1.979-.196-2.512-.73a.326.326 0 0 0-.232-.095z"/></svg>
+      </div>
+      <div class="tool-name">Reddit</div>
+      <p class="tool-desc">Preview how your Reddit post, title, upvote count, and flair will look inside a subreddit feed.</p>
+      <span class="tool-badge tag-new">New</span>
+    </a>
+
+    <a href="#tools" class="tool-card pinterest reveal" style="transition-delay:0.35s" aria-label="Pinterest Pin Preview Tool">
+      <div class="tool-icon" style="background: rgba(230,0,35,0.1);">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="#e60023"><path d="M12 0C5.373 0 0 5.373 0 12c0 5.084 3.163 9.426 7.627 11.174-.105-.949-.2-2.405.042-3.441.218-.937 1.407-5.965 1.407-5.965s-.359-.719-.359-1.782c0-1.668.967-2.914 2.171-2.914 1.023 0 1.518.769 1.518 1.69 0 1.029-.655 2.568-.994 3.995-.283 1.194.599 2.169 1.777 2.169 2.133 0 3.772-2.249 3.772-5.495 0-2.873-2.064-4.882-5.012-4.882-3.414 0-5.418 2.561-5.418 5.207 0 1.031.397 2.138.893 2.738a.36.36 0 0 1 .083.345l-.333 1.36c-.053.22-.174.267-.402.161-1.499-.698-2.436-2.889-2.436-4.649 0-3.785 2.75-7.262 7.929-7.262 4.163 0 7.398 2.967 7.398 6.931 0 4.136-2.607 7.464-6.227 7.464-1.216 0-2.359-.632-2.75-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0z"/></svg>
+      </div>
+      <div class="tool-name">Pinterest</div>
+      <p class="tool-desc">Visualize your Pinterest pin image, title, description, and board placement before pinning.</p>
+      <span class="tool-badge tag-new">New</span>
+    </a>
 </section>
 
 <!-- ─── FEATURES ─── -->
@@ -1352,8 +1663,11 @@
     <div class="footer-brand">
       <a class="logo" href="/">FeedPreview</a>
       <p>The free social media post preview tool for creators, marketers, and brands who want to perfect every post before publishing.</p>
-      <div class="social-links" aria-label="Social media links">        
-        <a href="https://github.com/feedpreview/feedpreview.github.io" class="social-link" aria-label="GitHub">⌥</a>
+      <div class="social-links" aria-label="Social media links">
+        <a href="#" class="social-link" aria-label="Twitter">𝕏</a>
+        <a href="#" class="social-link" aria-label="Instagram">📸</a>
+        <a href="#" class="social-link" aria-label="LinkedIn">in</a>
+        <a href="#" class="social-link" aria-label="GitHub">⌥</a>
       </div>
     </div>
 
@@ -1398,33 +1712,198 @@
 </footer>
 
 <script>
-  // ─── Instagram Preview Logic ───
+  // ─── Instagram Multi-Photo Feed State ───
+  let igPhotos = [];       // array of data URLs
+  let currentSlide = 0;
+  let isLiked = false;
+
+  // ─── Username / Caption ───
   function updateIgPreview() {
     const username = document.getElementById('igUsernameInput').value.trim() || 'your_username';
-    const caption = document.getElementById('igCaptionInput').value.trim() || 'Type your caption below to preview it here ✨';
-    document.getElementById('igUsernameDisplay').textContent = username.replace('@','');
+    const caption  = document.getElementById('igCaptionInput').value.trim()  || 'Type your caption below to preview it here ✨';
+    document.getElementById('igUsernameDisplay').textContent        = username.replace('@','');
     document.getElementById('igCaptionUsernameDisplay').textContent = username.replace('@','');
-    document.getElementById('igCaptionDisplay').textContent = ' ' + caption;
+    document.getElementById('igCaptionDisplay').textContent         = ' ' + caption;
     const initials = username.replace('@','').slice(0,2).toUpperCase() || 'FP';
     document.getElementById('igAvatarText').textContent = initials;
   }
 
+  // ─── Engagement Controls ───
+  function updateEngagement() {
+    const likes    = document.getElementById('igLikesInput').value    || '0';
+    const comments = document.getElementById('igCommentsInput').value || '0';
+    const shares   = document.getElementById('igSharesInput').value   || '0';
+    document.getElementById('igLikesRow').textContent        = likes + ' likes';
+    document.getElementById('igCommentDisplay').textContent  = comments;
+    document.getElementById('igShareDisplay').textContent    = shares;
+  }
+
+  // ─── Like Toggle ───
+  function toggleLike() {
+    isLiked = !isLiked;
+    const btn  = document.getElementById('igLikeBtn');
+    const svg  = document.getElementById('igHeartSvg');
+    const inp  = document.getElementById('igLikesInput');
+    btn.classList.toggle('liked', isLiked);
+    svg.classList.remove('heart-pop');
+    void svg.offsetWidth;
+    svg.classList.add('heart-pop');
+    const path = svg.querySelector('path');
+    path.setAttribute('fill',   isLiked ? '#ff3c6e' : 'none');
+    path.setAttribute('stroke', isLiked ? '#ff3c6e' : 'currentColor');
+    let n = parseInt(inp.value.replace(/,/g,'')) || 1200;
+    n = isLiked ? n + 1 : n - 1;
+    const fmt = n.toLocaleString();
+    inp.value = fmt;
+    document.getElementById('igLikesRow').textContent = fmt + ' likes';
+  }
+
+  // ─── Render carousel from igPhotos array ───
+  function renderCarousel() {
+    const slides   = document.getElementById('igSlides');
+    const dots     = document.getElementById('igDots');
+    const prevBtn  = document.getElementById('igPrev');
+    const nextBtn  = document.getElementById('igNext');
+    const countBadge  = document.getElementById('igPhotoCount');
+    const strip    = document.getElementById('igPhotoStrip');
+    const addMore  = document.getElementById('igAddMoreBtn');
+    const mainBtn  = document.getElementById('igUploadMainBtn');
+
+    // Clear existing slides (keep empty slot logic)
+    slides.innerHTML = '';
+    dots.innerHTML   = '';
+    strip.innerHTML  = '';
+
+    if (igPhotos.length === 0) {
+      // Show empty state
+      const empty = document.createElement('div');
+      empty.className = 'ig-slide ig-slide-empty';
+      empty.id = 'igEmptySlide';
+      empty.onclick = () => document.getElementById('igFileInput').click();
+      empty.innerHTML = `
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+        <p>Click to add photos</p>
+        <span class="ig-upload-hint-sub">Up to 10 photos</span>`;
+      slides.appendChild(empty);
+      prevBtn.classList.remove('visible');
+      nextBtn.classList.remove('visible');
+      countBadge.style.display = 'none';
+      addMore.style.display = 'none';
+      mainBtn.textContent = '📷 Add photos to feed (up to 10)';
+      slides.style.transform = 'translateX(0)';
+      currentSlide = 0;
+      return;
+    }
+
+    // Build slides
+    igPhotos.forEach((src, i) => {
+      const slide = document.createElement('div');
+      slide.className = 'ig-slide';
+      slide.innerHTML = `<img src="${src}" alt="Photo ${i+1}" draggable="false">
+        <button class="ig-slide-delete" onclick="deletePhoto(${i})" title="Remove photo">✕</button>`;
+      slides.appendChild(slide);
+
+      // Dot
+      const dot = document.createElement('div');
+      dot.className = 'ig-dot' + (i === currentSlide ? ' active' : '');
+      dot.onclick = () => goToSlide(i);
+      dots.appendChild(dot);
+
+      // Strip thumb
+      const thumb = document.createElement('div');
+      thumb.className = 'strip-thumb' + (i === currentSlide ? ' active' : '');
+      thumb.onclick = () => goToSlide(i);
+      thumb.innerHTML = `<img src="${src}" alt="Photo ${i+1}">`;
+      strip.appendChild(thumb);
+    });
+
+    // Clamp currentSlide
+    if (currentSlide >= igPhotos.length) currentSlide = igPhotos.length - 1;
+
+    // Arrows: show only when >1 photo
+    const multi = igPhotos.length > 1;
+    prevBtn.classList.toggle('visible', multi);
+    nextBtn.classList.toggle('visible', multi);
+    countBadge.style.display = multi ? 'block' : 'none';
+    dots.style.display = multi ? 'flex' : 'none';
+
+    // Add-more button in strip
+    addMore.style.display = igPhotos.length < 10 ? 'flex' : 'none';
+    mainBtn.textContent = igPhotos.length < 10
+      ? `📷 Add more photos (${igPhotos.length}/10)`
+      : '✅ Max 10 photos reached';
+
+    // Apply transform
+    applySlideTransform();
+  }
+
+  function applySlideTransform() {
+    document.getElementById('igSlides').style.transform = `translateX(-${currentSlide * 100}%)`;
+    document.getElementById('igPhotoCount').textContent  = `${currentSlide + 1} / ${igPhotos.length}`;
+    // Sync dots & thumbs
+    document.querySelectorAll('.ig-dot').forEach((d,i) => d.classList.toggle('active', i === currentSlide));
+    document.querySelectorAll('.strip-thumb').forEach((t,i) => t.classList.toggle('active', i === currentSlide));
+    // Scroll thumb into view
+    const thumbs = document.querySelectorAll('.strip-thumb');
+    if (thumbs[currentSlide]) thumbs[currentSlide].scrollIntoView({ behavior:'smooth', inline:'nearest', block:'nearest' });
+  }
+
+  function goToSlide(i) {
+    currentSlide = Math.max(0, Math.min(i, igPhotos.length - 1));
+    applySlideTransform();
+  }
+
+  function carouselNav(dir) {
+    if (!igPhotos.length) return;
+    currentSlide = (currentSlide + dir + igPhotos.length) % igPhotos.length;
+    applySlideTransform();
+  }
+
+  function deletePhoto(i) {
+    igPhotos.splice(i, 1);
+    if (currentSlide >= igPhotos.length) currentSlide = Math.max(0, igPhotos.length - 1);
+    renderCarousel();
+  }
+
+  // ─── File input: support multiple ───
   document.getElementById('igFileInput').addEventListener('change', function(e) {
-    const file = e.target.files[0];
-    if (!file) return;
-    const reader = new FileReader();
-    reader.onload = function(ev) {
-      const img = document.getElementById('igImageDisplay');
-      img.src = ev.target.result;
-      img.style.display = 'block';
-      document.getElementById('igUploadHint').style.display = 'none';
-    };
-    reader.readAsDataURL(file);
+    const files = Array.from(e.target.files);
+    const remaining = 10 - igPhotos.length;
+    const toLoad = files.slice(0, remaining);
+    let loaded = 0;
+    if (!toLoad.length) return;
+
+    toLoad.forEach(file => {
+      const reader = new FileReader();
+      reader.onload = ev => {
+        igPhotos.push(ev.target.result);
+        loaded++;
+        if (loaded === toLoad.length) {
+          // Jump to first newly added photo
+          currentSlide = igPhotos.length - toLoad.length;
+          renderCarousel();
+        }
+      };
+      reader.readAsDataURL(file);
+    });
+    // Reset so same files can be re-added after deletion
+    this.value = '';
   });
+
+  // ─── Touch / swipe support on carousel ───
+  (function() {
+    let startX = 0;
+    const carousel = document.getElementById('igCarousel');
+    carousel.addEventListener('touchstart', e => { startX = e.touches[0].clientX; }, { passive: true });
+    carousel.addEventListener('touchend', e => {
+      const dx = e.changedTouches[0].clientX - startX;
+      if (Math.abs(dx) > 40) carouselNav(dx < 0 ? 1 : -1);
+    });
+  })();
 
   // ─── FAQ Accordion ───
   function toggleFaq(el) {
-    const item = el.parentElement;
+    const item   = el.parentElement;
     const isOpen = item.classList.contains('open');
     document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
     if (!isOpen) item.classList.add('open');
@@ -1432,26 +1911,22 @@
 
   // ─── Hamburger ───
   const hamburger = document.getElementById('hamburger');
-  const nav = document.getElementById('main-nav');
-  hamburger.addEventListener('click', () => nav.classList.toggle('open'));
+  const nav       = document.getElementById('main-nav');
+  hamburger.addEventListener('click',   () => nav.classList.toggle('open'));
   hamburger.addEventListener('keydown', e => { if(e.key==='Enter') nav.classList.toggle('open'); });
 
-  // ─── Header Scroll Style ───
+  // ─── Header scroll style ───
   window.addEventListener('scroll', () => {
     document.getElementById('site-header').style.background =
       window.scrollY > 40 ? 'rgba(10,10,15,0.95)' : 'rgba(10,10,15,0.8)';
   });
 
-  // ─── Intersection Observer (scroll reveal) ───
-  const io = new IntersectionObserver((entries) => {
+  // ─── Scroll reveal ───
+  const io = new IntersectionObserver(entries => {
     entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-        io.unobserve(entry.target);
-      }
+      if (entry.isIntersecting) { entry.target.classList.add('visible'); io.unobserve(entry.target); }
     });
   }, { threshold: 0.12 });
-
   document.querySelectorAll('.reveal, .feature-item, .step, .testimonial-card').forEach(el => io.observe(el));
 </script>
 </body>
