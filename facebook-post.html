@@ -8,13 +8,13 @@
   <meta name="keywords" content="facebook post preview, fb post mockup, facebook preview tool, facebook post generator, social media preview, facebook screenshot tool, facebook post simulator" />
   <meta name="author" content="FeedPreview" />
   <meta name="robots" content="index, follow" />
-  <link rel="canonical" href="https://feedpreview.github.io/facebook-post/" />
+  <link rel="canonical" href="https://feedpreview.github.io/facebook/" />
 
   <!-- Open Graph -->
   <meta property="og:type" content="website" />
   <meta property="og:title" content="Facebook Post Preview Tool – Free FB Post Mockup | FeedPreview" />
   <meta property="og:description" content="Simulate exactly how your Facebook post will look before you hit publish. Add photos, set reactions, customize privacy, and export a screenshot." />
-  <meta property="og:url" content="https://feedpreview.github.io/facebook-post/" />
+  <meta property="og:url" content="https://feedpreview.github.io/facebook/" />
   <meta property="og:image" content="https://feedpreview.github.io/og-facebook.jpg" />
   <meta property="og:site_name" content="FeedPreview" />
 
@@ -30,7 +30,7 @@
     "@context": "https://schema.org",
     "@type": "WebApplication",
     "name": "Facebook Post Preview Tool",
-    "url": "https://feedpreview.github.io/facebook-post/",
+    "url": "https://feedpreview.github.io/facebook/",
     "description": "A free browser-based tool to preview Facebook posts before publishing. Supports multi-photo uploads, reaction customization, post styles, privacy settings, and PNG screenshot export.",
     "applicationCategory": "UtilitiesApplication",
     "operatingSystem": "Web",
@@ -64,7 +64,7 @@
     "@type": "BreadcrumbList",
     "itemListElement": [
       { "@type": "ListItem", "position": 1, "name": "FeedPreview", "item": "https://feedpreview.github.io/" },
-      { "@type": "ListItem", "position": 2, "name": "Facebook Post Preview", "item": "https://feedpreview.github.io/facebook-post/" }
+      { "@type": "ListItem", "position": 2, "name": "Facebook Post Preview", "item": "https://feedpreview.github.io/facebook/" }
     ]
   }
   </script>
@@ -1633,7 +1633,7 @@
       });
 
       const link = document.createElement('a');
-      const name = (document.getElementById('fbName').value || 'facebook-post').toLowerCase().replace(/\s+/g, '-');
+      const name = (document.getElementById('fbName').value || 'facebook').toLowerCase().replace(/\s+/g, '-');
       link.download = `feedpreview-${name}-${Date.now()}.png`;
       link.href = canvas.toDataURL('image/png');
       link.click();
