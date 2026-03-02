@@ -1,0 +1,2291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Facebook Post Preview Tool – Free Live Preview | FeedPreview</title>
+  <meta name="description" content="Preview your Facebook posts before publishing. Customize text, photos, reactions, comments, shares, post style, and privacy. Free Facebook post preview tool – no signup required." />
+  <meta name="keywords" content="Facebook post preview, Facebook preview tool, preview Facebook post, fake Facebook post generator, Facebook simulator, social media preview" />
+  <meta name="author" content="FeedPreview" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://feedpreview.github.io/facebook-preview/" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Facebook Post Preview Tool – Free Live Preview | FeedPreview" />
+  <meta property="og:description" content="See exactly how your Facebook post will look before publishing. Customize photos, reactions, comments, privacy settings and more." />
+  <meta property="og:url" content="https://feedpreview.github.io/facebook-preview/" />
+  <meta property="og:image" content="https://feedpreview.github.io/og-facebook.jpg" />
+  <meta property="og:site_name" content="FeedPreview" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Facebook Post Preview Tool – FeedPreview" />
+  <meta name="twitter:description" content="Free tool to preview your Facebook posts with photos, reactions, comments and more before going live." />
+  <meta name="twitter:image" content="https://feedpreview.github.io/og-facebook.jpg" />
+
+  <!-- Breadcrumb Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://feedpreview.github.io/" },
+      { "@type": "ListItem", "position": 2, "name": "Facebook Preview", "item": "https://feedpreview.github.io/facebook-preview/" }
+    ]
+  }
+  </script>
+
+  <!-- WebApplication Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Facebook Post Preview Tool",
+    "url": "https://feedpreview.github.io/facebook-preview/",
+    "description": "A free browser-based tool to preview Facebook posts before publishing. Supports multiple photos, reactions, comments, post styles, and privacy settings.",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Web",
+    "browserRequirements": "Requires JavaScript",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+    "featureList": ["Multiple photo upload", "Live preview", "Post style selector", "Reactions customization", "Screenshot download", "Privacy settings"],
+    "screenshot": "https://feedpreview.github.io/og-facebook.jpg",
+    "author": { "@type": "Organization", "name": "FeedPreview", "url": "https://feedpreview.github.io/" }
+  }
+  </script>
+
+  <!-- HowTo Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    "name": "How to Preview a Facebook Post",
+    "description": "Step-by-step guide to preview your Facebook post before publishing using FeedPreview.",
+    "step": [
+      { "@type": "HowToStep", "position": 1, "name": "Enter your post text", "text": "Type or paste your Facebook post text into the content field. Emojis and line breaks are supported." },
+      { "@type": "HowToStep", "position": 2, "name": "Add your profile details", "text": "Enter your name and optionally upload a profile picture to personalize the preview." },
+      { "@type": "HowToStep", "position": 3, "name": "Upload photos", "text": "Click the photo upload area to add up to 10 photos. They will arrange in Facebook's native grid layout." },
+      { "@type": "HowToStep", "position": 4, "name": "Choose post style and privacy", "text": "Select the post type (feed, story, reel), privacy setting, and visual theme." },
+      { "@type": "HowToStep", "position": 5, "name": "Customize engagement", "text": "Set custom likes, reactions, comments, and shares to simulate realistic engagement." },
+      { "@type": "HowToStep", "position": 6, "name": "Take a screenshot", "text": "Click the Screenshot button to download a PNG image of your post preview." }
+    ]
+  }
+  </script>
+
+  <!-- FAQ Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Is this Facebook post preview tool free?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Yes, completely free. No account, no subscription, no watermarks." }
+      },
+      {
+        "@type": "Question",
+        "name": "Does this tool upload my data anywhere?",
+        "acceptedAnswer": { "@type": "Answer", "text": "No. Everything runs entirely in your browser. Your photos, text, and data never leave your device." }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I download the Facebook post preview as an image?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Yes. Click the Screenshot button to download a high-quality PNG of your post preview." }
+      },
+      {
+        "@type": "Question",
+        "name": "How many photos can I add to the Facebook post preview?",
+        "acceptedAnswer": { "@type": "Answer", "text": "You can add up to 10 photos. They will be arranged in Facebook's native multi-photo grid layout automatically." }
+      }
+    ]
+  }
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ─── DESIGN TOKENS (match index.html) ─── */
+    :root {
+      --bg: #0a0a0f;
+      --bg2: #0f0f18;
+      --card: #13131e;
+      --border: rgba(255,255,255,0.07);
+      --accent: #ff3c6e;
+      --accent2: #7b61ff;
+      --accent3: #00d4aa;
+      --fb: #1877f2;
+      --fb-dark: #0f5bb5;
+      --text: #f0f0f5;
+      --muted: #8888a0;
+      --font-head: 'Syne', sans-serif;
+      --font-body: 'DM Sans', sans-serif;
+      --radius: 20px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-body);
+      font-size: 16px;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 9999;
+      opacity: 0.35;
+    }
+
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: var(--fb); border-radius: 2px; }
+
+    /* ─── HEADER ─── */
+    header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      padding: 0 5%;
+      height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(10,10,15,0.85);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+      transition: background 0.3s;
+    }
+
+    .logo {
+      font-family: var(--font-head);
+      font-size: 1.5rem;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-decoration: none;
+    }
+
+    nav { display: flex; align-items: center; gap: 2rem; }
+    nav a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: color 0.2s;
+      position: relative;
+    }
+    nav a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px; left: 0;
+      width: 0; height: 2px;
+      background: var(--fb);
+      transition: width 0.3s;
+      border-radius: 2px;
+    }
+    nav a:hover { color: var(--text); }
+    nav a:hover::after { width: 100%; }
+
+    .nav-cta {
+      background: var(--fb);
+      color: #fff !important;
+      padding: 0.5rem 1.2rem;
+      border-radius: 50px;
+      font-weight: 600 !important;
+      font-size: 0.85rem !important;
+    }
+    .nav-cta::after { display: none !important; }
+    .nav-cta:hover { opacity: 0.9; }
+
+    .nav-active { color: var(--text) !important; }
+    .nav-active::after { width: 100% !important; }
+
+    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 8px; }
+    .hamburger span { display: block; width: 22px; height: 2px; background: var(--text); border-radius: 2px; transition: all 0.3s; }
+
+    /* ─── PAGE HERO ─── */
+    .page-hero {
+      padding: 110px 5% 60px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .page-hero::before {
+      content: '';
+      position: absolute;
+      top: -80px; left: 50%;
+      transform: translateX(-50%);
+      width: 700px; height: 400px;
+      background: radial-gradient(ellipse, rgba(24,119,242,0.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .page-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(24,119,242,0.1);
+      border: 1px solid rgba(24,119,242,0.25);
+      color: var(--fb);
+      font-size: 0.78rem;
+      font-weight: 700;
+      padding: 0.38rem 1rem;
+      border-radius: 50px;
+      margin-bottom: 1.2rem;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      animation: fadeUp 0.5s ease both;
+    }
+    .page-badge .dot { width: 6px; height: 6px; background: var(--fb); border-radius: 50%; animation: pulse 1.5s infinite; }
+    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
+
+    .page-title {
+      font-family: var(--font-head);
+      font-size: clamp(2.2rem, 4vw, 3.6rem);
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      line-height: 1.08;
+      margin-bottom: 1rem;
+      animation: fadeUp 0.5s 0.1s ease both;
+    }
+    .page-title .hl {
+      background: linear-gradient(90deg, var(--fb), #4facfe);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .page-sub {
+      color: var(--muted);
+      font-size: 1.05rem;
+      max-width: 560px;
+      margin: 0 auto 2rem;
+      line-height: 1.7;
+      animation: fadeUp 0.5s 0.2s ease both;
+    }
+    @keyframes fadeUp { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:translateY(0)} }
+
+    /* ─── MAIN TOOL LAYOUT ─── */
+    .tool-wrapper {
+      display: grid;
+      grid-template-columns: 420px 1fr;
+      gap: 2rem;
+      max-width: 1300px;
+      margin: 0 auto;
+      padding: 0 5% 80px;
+      align-items: start;
+    }
+
+    /* ─── CONTROLS PANEL ─── */
+    .controls-panel {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      position: sticky;
+      top: 88px;
+    }
+
+    .panel-tabs {
+      display: flex;
+      border-bottom: 1px solid var(--border);
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+    .panel-tabs::-webkit-scrollbar { display: none; }
+
+    .panel-tab {
+      flex: 1;
+      min-width: max-content;
+      padding: 0.9rem 1rem;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--muted);
+      background: none;
+      border: none;
+      cursor: pointer;
+      border-bottom: 2px solid transparent;
+      transition: color 0.2s, border-color 0.2s;
+      white-space: nowrap;
+    }
+    .panel-tab:hover { color: var(--text); }
+    .panel-tab.active { color: var(--fb); border-bottom-color: var(--fb); }
+
+    .panel-body { padding: 1.5rem; }
+    .tab-pane { display: none; flex-direction: column; gap: 1.1rem; }
+    .tab-pane.active { display: flex; }
+
+    /* Form fields */
+    .field { display: flex; flex-direction: column; gap: 5px; }
+    .field label {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; }
+    .field-row3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 0.65rem; }
+
+    .ctrl {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 0.6rem 0.85rem;
+      color: var(--text);
+      font-family: var(--font-body);
+      font-size: 0.88rem;
+      width: 100%;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .ctrl:focus { border-color: rgba(24,119,242,0.5); }
+    .ctrl::placeholder { color: var(--muted); }
+    textarea.ctrl { resize: vertical; min-height: 90px; line-height: 1.5; }
+    select.ctrl { cursor: pointer; }
+
+    /* Avatar upload */
+    .avatar-upload-row {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    .avatar-preview {
+      width: 52px; height: 52px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--fb), #4facfe);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #fff;
+      flex-shrink: 0;
+      cursor: pointer;
+      overflow: hidden;
+      border: 2px solid rgba(24,119,242,0.3);
+      transition: border-color 0.2s;
+    }
+    .avatar-preview:hover { border-color: var(--fb); }
+    .avatar-preview img { width: 100%; height: 100%; object-fit: cover; display: none; }
+    .avatar-upload-hint { font-size: 0.8rem; color: var(--muted); line-height: 1.5; }
+    .avatar-upload-hint strong { color: var(--fb); cursor: pointer; }
+    #avatarFileInput { display: none; }
+
+    /* Cover photo strip */
+    .cover-upload-box {
+      background: rgba(24,119,242,0.05);
+      border: 1px dashed rgba(24,119,242,0.25);
+      border-radius: 10px;
+      padding: 1rem;
+      text-align: center;
+      cursor: pointer;
+      transition: background 0.2s;
+      font-size: 0.82rem;
+      color: var(--muted);
+    }
+    .cover-upload-box:hover { background: rgba(24,119,242,0.1); }
+
+    /* Photo grid upload */
+    .photo-upload-zone {
+      border: 1px dashed rgba(24,119,242,0.3);
+      border-radius: 12px;
+      padding: 1.2rem;
+      text-align: center;
+      cursor: pointer;
+      background: rgba(24,119,242,0.04);
+      transition: background 0.2s;
+    }
+    .photo-upload-zone:hover { background: rgba(24,119,242,0.09); }
+    .photo-upload-zone p { font-size: 0.82rem; color: var(--muted); margin-top: 0.4rem; }
+    .photo-upload-zone .puz-icon { font-size: 1.6rem; }
+
+    .photo-thumbs-wrap {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 0.5rem;
+    }
+    .photo-thumb {
+      width: 54px; height: 54px;
+      border-radius: 8px;
+      overflow: hidden;
+      position: relative;
+      cursor: pointer;
+      border: 2px solid transparent;
+      transition: border-color 0.2s;
+    }
+    .photo-thumb:hover { border-color: var(--accent); }
+    .photo-thumb img { width: 100%; height: 100%; object-fit: cover; }
+    .photo-thumb .rm-btn {
+      position: absolute;
+      top: 2px; right: 2px;
+      width: 18px; height: 18px;
+      border-radius: 50%;
+      background: rgba(0,0,0,0.7);
+      border: none;
+      color: #fff;
+      font-size: 0.55rem;
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+    .photo-thumb:hover .rm-btn { opacity: 1; }
+    .photo-thumb-add {
+      width: 54px; height: 54px;
+      border-radius: 8px;
+      border: 1px dashed rgba(24,119,242,0.35);
+      background: rgba(24,119,242,0.06);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--fb);
+      font-size: 1.3rem;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .photo-thumb-add:hover { background: rgba(24,119,242,0.14); }
+
+    /* Style tiles */
+    .style-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.5rem;
+    }
+    .style-tile {
+      border: 2px solid var(--border);
+      border-radius: 10px;
+      padding: 0.6rem 0.4rem;
+      text-align: center;
+      cursor: pointer;
+      font-size: 0.72rem;
+      color: var(--muted);
+      transition: border-color 0.2s, color 0.2s, background 0.2s;
+      line-height: 1.3;
+    }
+    .style-tile .st-icon { font-size: 1.1rem; display: block; margin-bottom: 3px; }
+    .style-tile:hover { border-color: rgba(24,119,242,0.4); color: var(--text); }
+    .style-tile.active { border-color: var(--fb); color: var(--fb); background: rgba(24,119,242,0.06); }
+
+    /* Reaction checkboxes */
+    .reaction-picker {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+    .rxn-chip {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border);
+      border-radius: 50px;
+      padding: 4px 10px 4px 6px;
+      font-size: 0.8rem;
+      cursor: pointer;
+      transition: background 0.2s, border-color 0.2s;
+      user-select: none;
+    }
+    .rxn-chip.selected { background: rgba(24,119,242,0.1); border-color: rgba(24,119,242,0.4); }
+    .rxn-chip .rxn-emoji { font-size: 1.05rem; }
+
+    /* Engagement num inputs */
+    .engagement-row { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 0.6rem; }
+    .eng-field { display: flex; flex-direction: column; gap: 4px; }
+    .eng-field label { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); }
+    .eng-field input {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 0.5rem;
+      color: var(--text);
+      font-family: var(--font-body);
+      font-size: 0.82rem;
+      text-align: center;
+      font-weight: 600;
+      outline: none;
+      transition: border-color 0.2s;
+      width: 100%;
+    }
+    .eng-field input:focus { border-color: rgba(24,119,242,0.5); }
+
+    /* Comment items */
+    .comment-list { display: flex; flex-direction: column; gap: 0.5rem; max-height: 200px; overflow-y: auto; }
+    .comment-item {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(255,255,255,0.03);
+      border-radius: 8px;
+      padding: 0.5rem 0.65rem;
+      font-size: 0.82rem;
+    }
+    .comment-item .ci-user { font-weight: 600; color: var(--fb); min-width: 70px; }
+    .comment-item .ci-text { flex: 1; color: var(--muted); font-size: 0.78rem; }
+    .comment-item .ci-del { background: none; border: none; color: var(--muted); cursor: pointer; font-size: 0.7rem; padding: 2px 4px; border-radius: 4px; }
+    .comment-item .ci-del:hover { color: var(--accent); }
+
+    .add-comment-row { display: flex; gap: 0.5rem; margin-top: 0.25rem; }
+    .add-comment-row input { flex: 1; }
+
+    .btn-sm {
+      background: rgba(24,119,242,0.15);
+      border: 1px solid rgba(24,119,242,0.3);
+      border-radius: 8px;
+      color: var(--fb);
+      font-size: 0.8rem;
+      font-weight: 600;
+      padding: 0.5rem 0.85rem;
+      cursor: pointer;
+      white-space: nowrap;
+      font-family: var(--font-body);
+      transition: background 0.2s;
+    }
+    .btn-sm:hover { background: rgba(24,119,242,0.25); }
+
+    /* ─── PREVIEW PANEL ─── */
+    .preview-panel { display: flex; flex-direction: column; gap: 1.5rem; }
+
+    .preview-header-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .preview-header-row h2 {
+      font-family: var(--font-head);
+      font-size: 1.1rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+
+    .preview-actions { display: flex; gap: 0.6rem; flex-wrap: wrap; }
+
+    .btn-action {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.55rem 1.1rem;
+      border-radius: 50px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      cursor: pointer;
+      border: none;
+      font-family: var(--font-body);
+      transition: transform 0.15s, box-shadow 0.15s;
+    }
+    .btn-action:hover { transform: translateY(-1px); }
+    .btn-screenshot {
+      background: linear-gradient(135deg, var(--fb), #4facfe);
+      color: #fff;
+      box-shadow: 0 4px 16px rgba(24,119,242,0.3);
+    }
+    .btn-screenshot:hover { box-shadow: 0 8px 24px rgba(24,119,242,0.45); }
+    .btn-reset {
+      background: rgba(255,255,255,0.06);
+      color: var(--muted);
+      border: 1px solid var(--border);
+    }
+    .btn-reset:hover { color: var(--text); background: rgba(255,255,255,0.1); }
+
+    /* ─── DEVICE TOGGLE ─── */
+    .device-toggle {
+      display: flex;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border);
+      border-radius: 50px;
+      padding: 3px;
+      gap: 2px;
+    }
+    .device-btn {
+      padding: 0.35rem 0.9rem;
+      border-radius: 50px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--muted);
+      background: none;
+      border: none;
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s;
+    }
+    .device-btn.active { background: var(--fb); color: #fff; }
+
+    /* ─── FACEBOOK POST PREVIEW ─── */
+    .fb-preview-wrap {
+      display: flex;
+      justify-content: center;
+    }
+
+    /* Desktop theme */
+    .fb-post {
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.15);
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, sans-serif;
+      overflow: hidden;
+      width: 100%;
+      max-width: 560px;
+      transition: max-width 0.3s;
+      color: #1c1e21;
+    }
+    .fb-post.mobile-view { max-width: 375px; }
+    .fb-post.dark-theme { background: #242526; color: #e4e6eb; }
+    .fb-post.dark-theme .fb-post-inner { background: #242526; }
+    .fb-post.dark-theme .fb-meta-text { color: #b0b3b8; }
+    .fb-post.dark-theme .fb-post-body { color: #e4e6eb; }
+    .fb-post.dark-theme .fb-engagement-bar { border-color: rgba(255,255,255,0.12); }
+    .fb-post.dark-theme .fb-reaction-bar { border-color: rgba(255,255,255,0.12); background: #242526; }
+    .fb-post.dark-theme .fb-reaction-btn { color: #b0b3b8; }
+    .fb-post.dark-theme .fb-reaction-btn:hover { background: rgba(255,255,255,0.06); }
+    .fb-post.dark-theme .fb-comment-input-row { background: #242526; border-color: rgba(255,255,255,0.12); }
+    .fb-post.dark-theme .fb-comment-input { background: #3a3b3c; color: #e4e6eb; }
+    .fb-post.dark-theme .fb-comments-section { background: #242526; }
+    .fb-post.dark-theme .fb-single-comment .fc-text { background: #3a3b3c; color: #e4e6eb; }
+    .fb-post.dark-theme .fc-name { color: #e4e6eb; }
+
+    /* Header in the preview post */
+    .fb-post-header {
+      padding: 12px 16px 0;
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+    }
+
+    .fb-avatar {
+      width: 40px; height: 40px;
+      border-radius: 50%;
+      overflow: hidden;
+      flex-shrink: 0;
+      background: linear-gradient(135deg, #1877f2, #4facfe);
+      display: flex; align-items: center; justify-content: center;
+      color: #fff;
+      font-weight: 700;
+      font-size: 0.9rem;
+    }
+    .fb-avatar img { width: 100%; height: 100%; object-fit: cover; display: none; }
+
+    .fb-post-meta { flex: 1; min-width: 0; }
+    .fb-username {
+      font-weight: 700;
+      font-size: 0.9rem;
+      color: #1c1e21;
+      line-height: 1.2;
+    }
+    .fb-post.dark-theme .fb-username { color: #e4e6eb; }
+
+    .fb-meta-text {
+      color: #65676b;
+      font-size: 0.75rem;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      margin-top: 2px;
+    }
+    .fb-privacy-icon { font-size: 0.7rem; }
+    .fb-dot { opacity: 0.5; }
+
+    .fb-more-btn {
+      background: none;
+      border: none;
+      font-size: 1.2rem;
+      color: #65676b;
+      cursor: pointer;
+      padding: 4px 8px;
+      border-radius: 50%;
+      transition: background 0.15s;
+      line-height: 1;
+    }
+    .fb-more-btn:hover { background: rgba(0,0,0,0.06); }
+
+    /* Post text body */
+    .fb-post-body {
+      padding: 10px 16px 12px;
+      font-size: 0.95rem;
+      line-height: 1.55;
+      color: #1c1e21;
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+    .fb-post-body.large-text { font-size: 1.4rem; line-height: 1.35; font-weight: 600; }
+    .fb-post-body.xl-text { font-size: 1.8rem; line-height: 1.25; font-weight: 700; }
+
+    /* Background color post */
+    .fb-bg-post {
+      min-height: 240px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 24px;
+    }
+    .fb-bg-post .fb-post-body {
+      padding: 0;
+      font-size: 1.5rem;
+      font-weight: 700;
+      line-height: 1.3;
+    }
+
+    /* Feeling/activity tag */
+    .fb-feeling-tag {
+      padding: 0 16px 8px;
+      font-size: 0.85rem;
+      color: #65676b;
+      display: none;
+    }
+    .fb-feeling-tag.visible { display: block; }
+
+    /* Tag location */
+    .fb-location-tag {
+      padding: 0 16px 8px;
+      font-size: 0.85rem;
+      color: #1877f2;
+      display: none;
+    }
+    .fb-location-tag.visible { display: block; }
+
+    /* Photo grid */
+    .fb-photo-grid { overflow: hidden; }
+    .fb-grid-1 img { width: 100%; max-height: 460px; object-fit: cover; display: block; }
+    .fb-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; }
+    .fb-grid-2 img { width: 100%; height: 280px; object-fit: cover; display: block; }
+    .fb-grid-3 { display: grid; grid-template-columns: 2fr 1fr; gap: 2px; }
+    .fb-grid-3 .fb-grid-main img { height: 280px; width: 100%; object-fit: cover; display: block; }
+    .fb-grid-3 .fb-grid-side { display: grid; grid-template-rows: 1fr 1fr; gap: 2px; }
+    .fb-grid-3 .fb-grid-side img { height: 139px; width: 100%; object-fit: cover; display: block; }
+    .fb-grid-4 { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; }
+    .fb-grid-4 img { width: 100%; height: 200px; object-fit: cover; display: block; }
+    .fb-grid-5 { display: grid; grid-template-columns: 1fr 1fr 1fr; grid-template-rows: auto auto; gap: 2px; }
+    .fb-grid-5 .fb-g5-top { grid-column: 1 / span 3; display: grid; grid-template-columns: 1fr 1fr; gap: 2px; }
+    .fb-grid-5 .fb-g5-top img { height: 200px; width: 100%; object-fit: cover; display: block; }
+    .fb-grid-5 .fb-g5-bot { display: contents; }
+    .fb-grid-5 .fb-g5-bot img { height: 130px; width: 100%; object-fit: cover; display: block; }
+
+    .fb-grid-more {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 2px;
+    }
+    .fb-grid-more .fb-gm-main { grid-column: 1 / span 2; }
+    .fb-grid-more .fb-gm-main img { width: 100%; height: 280px; object-fit: cover; display: block; }
+    .fb-grid-more .fb-gm-side { display: grid; grid-template-rows: 1fr 1fr; gap: 2px; }
+    .fb-grid-more .fb-gm-side img { height: 139px; width: 100%; object-fit: cover; display: block; }
+    .fb-grid-more .fb-gm-extras { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 2px; }
+    .fb-grid-more .fb-gm-extras img { height: 110px; width: 100%; object-fit: cover; display: block; }
+    .fb-more-overlay {
+      position: relative;
+      grid-column: 3 / 4;
+    }
+    .fb-more-overlay img { height: 139px; width: 100%; object-fit: cover; display: block; }
+    .fb-more-overlay .overlay-count {
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0.55);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-size: 1.5rem;
+      font-weight: 700;
+    }
+
+    /* Link preview card */
+    .fb-link-card {
+      margin: 0;
+      border-top: 1px solid #e4e6eb;
+      overflow: hidden;
+      display: none;
+    }
+    .fb-link-card.visible { display: block; }
+    .fb-link-image {
+      width: 100%;
+      height: 160px;
+      background: #f0f2f5;
+      object-fit: cover;
+      display: block;
+    }
+    .fb-link-meta { padding: 10px 14px; background: #f0f2f5; }
+    .fb-link-domain { font-size: 0.72rem; text-transform: uppercase; color: #65676b; letter-spacing: 0.05em; }
+    .fb-link-title { font-size: 0.92rem; font-weight: 600; color: #1c1e21; line-height: 1.3; margin-top: 2px; }
+    .fb-link-desc { font-size: 0.8rem; color: #65676b; margin-top: 2px; }
+
+    /* Engagement bar */
+    .fb-engagement-bar {
+      padding: 8px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid #e4e6eb;
+      font-size: 0.8rem;
+      color: #65676b;
+    }
+
+    .fb-reactions-summary { display: flex; align-items: center; gap: 5px; }
+    .fb-rxn-emojis { display: flex; }
+    .fb-rxn-emojis span {
+      width: 20px; height: 20px;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+      margin-left: -4px;
+      border: 1.5px solid #fff;
+      background: #fff;
+    }
+    .fb-rxn-emojis span:first-child { margin-left: 0; }
+    .fb-rxn-count { cursor: pointer; }
+    .fb-rxn-count:hover { text-decoration: underline; }
+
+    .fb-shares-comments {
+      display: flex;
+      gap: 12px;
+    }
+    .fb-shares-comments span { cursor: pointer; }
+    .fb-shares-comments span:hover { text-decoration: underline; }
+
+    /* Reaction / action bar */
+    .fb-reaction-bar {
+      display: flex;
+      align-items: stretch;
+      border-bottom: 1px solid #e4e6eb;
+      background: #fff;
+    }
+    .fb-reaction-btn {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      padding: 6px 4px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: #65676b;
+      background: none;
+      border: none;
+      cursor: pointer;
+      border-radius: 6px;
+      margin: 4px 2px;
+      transition: background 0.15s;
+    }
+    .fb-reaction-btn:hover { background: #f2f2f2; }
+    .fb-reaction-btn.liked { color: #1877f2; }
+    .fb-reaction-btn .rb-icon { font-size: 1.1rem; }
+
+    /* Comments section */
+    .fb-comments-section {
+      padding: 8px 16px 12px;
+      background: #fff;
+    }
+    .fb-single-comment {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+    .fc-avatar {
+      width: 32px; height: 32px;
+      border-radius: 50%;
+      background: #e4e6eb;
+      flex-shrink: 0;
+      overflow: hidden;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.65rem; font-weight: 700; color: #65676b;
+    }
+    .fc-bubble { flex: 1; }
+    .fc-text {
+      background: #f0f2f5;
+      border-radius: 18px;
+      padding: 8px 12px;
+      display: inline-block;
+    }
+    .fc-name { font-weight: 700; font-size: 0.8rem; color: #1c1e21; }
+    .fc-body { font-size: 0.82rem; color: #1c1e21; line-height: 1.4; }
+    .fc-actions {
+      display: flex;
+      gap: 10px;
+      margin-top: 3px;
+      padding-left: 12px;
+      font-size: 0.72rem;
+      color: #65676b;
+    }
+    .fc-actions span { cursor: pointer; font-weight: 700; }
+    .fc-actions span:hover { text-decoration: underline; }
+    .fc-time { opacity: 0.7; }
+
+    .fb-comment-input-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      border-top: 1px solid #e4e6eb;
+      padding-top: 10px;
+      margin-top: 4px;
+    }
+    .fb-comment-input {
+      flex: 1;
+      background: #f0f2f5;
+      border: none;
+      border-radius: 20px;
+      padding: 8px 14px;
+      font-size: 0.85rem;
+      color: #1c1e21;
+      outline: none;
+      font-family: inherit;
+    }
+    .fb-comment-send {
+      background: none;
+      border: none;
+      color: #1877f2;
+      font-size: 1rem;
+      cursor: pointer;
+      padding: 4px;
+    }
+
+    /* Post type tag (sponsored, shared, etc.) */
+    .fb-sponsored-tag {
+      font-size: 0.72rem;
+      color: #65676b;
+      padding: 0 16px 4px;
+      display: none;
+    }
+    .fb-sponsored-tag.visible { display: block; }
+
+    /* ─── LINK PREVIEW STYLE ─── */
+    .fb-post.style-text-only .fb-photo-grid,
+    .fb-post.style-text-only .fb-link-card { display: none !important; }
+
+    /* Background color styles */
+    .fb-bg-gradient-1 { background: linear-gradient(135deg, #ff9a9e, #fad0c4); }
+    .fb-bg-gradient-2 { background: linear-gradient(135deg, #667eea, #764ba2); }
+    .fb-bg-gradient-3 { background: linear-gradient(135deg, #43e97b, #38f9d7); }
+    .fb-bg-gradient-4 { background: linear-gradient(135deg, #fa709a, #fee140); }
+    .fb-bg-gradient-5 { background: linear-gradient(135deg, #a18cd1, #fbc2eb); }
+    .fb-bg-solid-black { background: #18191a; }
+    .fb-bg-solid-white { background: #fff; }
+
+    /* ─── SECTION BASE ─── */
+    section { padding: 80px 5%; }
+
+    .section-label {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--fb);
+      margin-bottom: 0.75rem;
+    }
+    .section-title {
+      font-family: var(--font-head);
+      font-size: clamp(1.8rem, 3vw, 2.6rem);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+      margin-bottom: 1rem;
+    }
+    .section-sub {
+      color: var(--muted);
+      font-size: 1rem;
+      max-width: 580px;
+      line-height: 1.7;
+    }
+    .section-head { text-align: center; margin-bottom: 3.5rem; }
+    .section-head .section-sub { margin: 0 auto; }
+
+    /* ─── HOW IT WORKS ─── */
+    #how-it-works { background: var(--bg2); border-top: 1px solid var(--border); }
+    .how-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+    .how-step {
+      text-align: center;
+      padding: 2rem 1.5rem;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.5s, transform 0.5s;
+    }
+    .how-step.visible { opacity: 1; transform: translateY(0); }
+    .how-step:nth-child(2) { transition-delay: 0.1s; }
+    .how-step:nth-child(3) { transition-delay: 0.2s; }
+    .how-step:nth-child(4) { transition-delay: 0.3s; }
+    .how-step:nth-child(5) { transition-delay: 0.4s; }
+    .how-step:nth-child(6) { transition-delay: 0.5s; }
+
+    .how-num {
+      width: 52px; height: 52px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--fb), #4facfe);
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--font-head);
+      font-weight: 800; font-size: 1.1rem;
+      margin: 0 auto 1rem;
+    }
+    .how-step h3 { font-family: var(--font-head); font-size: 1rem; font-weight: 700; margin-bottom: 0.4rem; }
+    .how-step p { color: var(--muted); font-size: 0.85rem; line-height: 1.6; }
+
+    /* ─── DESCRIPTION ─── */
+    #description { background: var(--bg); }
+    .desc-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      max-width: 1100px;
+      margin: 0 auto;
+      align-items: start;
+    }
+    .desc-text h2 { font-family: var(--font-head); font-size: clamp(1.8rem,3vw,2.4rem); font-weight: 800; letter-spacing: -0.03em; margin-bottom: 1rem; }
+    .desc-text p { color: var(--muted); font-size: 0.95rem; line-height: 1.8; margin-bottom: 1rem; }
+    .desc-features { display: flex; flex-direction: column; gap: 0.85rem; }
+    .desc-feat {
+      display: flex;
+      gap: 0.85rem;
+      align-items: flex-start;
+      opacity: 0;
+      transform: translateX(20px);
+      transition: opacity 0.5s, transform 0.5s;
+    }
+    .desc-feat.visible { opacity: 1; transform: translateX(0); }
+    .desc-feat:nth-child(2){transition-delay:0.07s}
+    .desc-feat:nth-child(3){transition-delay:0.14s}
+    .desc-feat:nth-child(4){transition-delay:0.21s}
+    .desc-feat:nth-child(5){transition-delay:0.28s}
+    .desc-feat:nth-child(6){transition-delay:0.35s}
+
+    .df-icon {
+      width: 40px; height: 40px; flex-shrink: 0;
+      background: rgba(24,119,242,0.1);
+      border: 1px solid rgba(24,119,242,0.2);
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1rem;
+    }
+    .df-icon.green { background: rgba(0,212,170,0.1); border-color: rgba(0,212,170,0.2); }
+    .df-icon.purple { background: rgba(123,97,255,0.1); border-color: rgba(123,97,255,0.2); }
+    .desc-feat h4 { font-family: var(--font-head); font-size: 0.95rem; font-weight: 700; margin-bottom: 2px; }
+    .desc-feat p { color: var(--muted); font-size: 0.85rem; line-height: 1.5; margin: 0; }
+
+    /* ─── FAQ ─── */
+    #faq-section { background: var(--bg2); border-top: 1px solid var(--border); }
+    .faq-grid { max-width: 700px; margin: 0 auto; display: flex; flex-direction: column; gap: 0.75rem; }
+    .faq-item {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      overflow: hidden;
+      transition: border-color 0.2s;
+    }
+    .faq-item.open { border-color: rgba(24,119,242,0.4); }
+    .faq-q {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.15rem 1.5rem;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 0.95rem;
+      gap: 1rem;
+      user-select: none;
+    }
+    .faq-icon {
+      width: 24px; height: 24px; flex-shrink: 0;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.06);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.7rem;
+      transition: background 0.2s, transform 0.3s;
+    }
+    .faq-item.open .faq-icon { background: var(--fb); transform: rotate(45deg); }
+    .faq-a {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease, padding 0.3s;
+      color: var(--muted);
+      font-size: 0.9rem;
+      line-height: 1.7;
+      padding: 0 1.5rem;
+    }
+    .faq-item.open .faq-a { max-height: 200px; padding: 0 1.5rem 1.2rem; }
+
+    /* ─── REVEAL ─── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: var(--bg2);
+      border-top: 1px solid var(--border);
+      padding: 60px 5% 30px;
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 3rem;
+      margin-bottom: 3rem;
+    }
+    .footer-brand .logo { font-size: 1.4rem; margin-bottom: 0.75rem; display: inline-block; }
+    .footer-brand p { color: var(--muted); font-size: 0.88rem; line-height: 1.7; max-width: 280px; margin-bottom: 1.5rem; }
+    .social-links { display: flex; gap: 0.75rem; }
+    .social-link {
+      width: 36px; height: 36px;
+      border-radius: 10px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      text-decoration: none;
+      font-size: 0.85rem;
+      color: var(--muted);
+      transition: background 0.2s, color 0.2s, border-color 0.2s;
+    }
+    .social-link:hover { background: var(--fb); border-color: var(--fb); color: #fff; }
+    .footer-widget h4 {
+      font-family: var(--font-head);
+      font-size: 0.9rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      margin-bottom: 1.2rem;
+    }
+    .footer-widget ul { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
+    .footer-widget a { color: var(--muted); text-decoration: none; font-size: 0.88rem; transition: color 0.2s; }
+    .footer-widget a:hover { color: var(--text); }
+    .footer-bottom {
+      border-top: 1px solid var(--border);
+      padding-top: 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .footer-bottom p { color: var(--muted); font-size: 0.82rem; }
+    .footer-bottom a { color: var(--muted); text-decoration: none; }
+    .footer-bottom a:hover { color: var(--text); }
+
+    /* ─── TOAST ─── */
+    .toast {
+      position: fixed;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%) translateY(20px);
+      background: #333;
+      color: #fff;
+      padding: 0.75rem 1.5rem;
+      border-radius: 50px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      opacity: 0;
+      transition: opacity 0.3s, transform 0.3s;
+      z-index: 9998;
+      pointer-events: none;
+      white-space: nowrap;
+    }
+    .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 1100px) {
+      .tool-wrapper { grid-template-columns: 380px 1fr; }
+    }
+    @media (max-width: 900px) {
+      .tool-wrapper { grid-template-columns: 1fr; }
+      .controls-panel { position: static; }
+      .desc-grid { grid-template-columns: 1fr; gap: 2rem; }
+      .footer-grid { grid-template-columns: 1fr 1fr; gap: 2rem; }
+    }
+    @media (max-width: 600px) {
+      header nav { display: none; }
+      header nav.open {
+        display: flex;
+        flex-direction: column;
+        position: fixed;
+        inset: 72px 0 0;
+        background: rgba(10,10,15,0.97);
+        padding: 2rem;
+        z-index: 999;
+        gap: 1.5rem;
+        align-items: flex-start;
+        backdrop-filter: blur(20px);
+      }
+      .hamburger { display: flex; }
+      .footer-grid { grid-template-columns: 1fr; }
+      .preview-header-row { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ─── HEADER ─── -->
+<header id="site-header">
+  <a class="logo" href="/" aria-label="FeedPreview Home">FeedPreview</a>
+  <nav id="main-nav" role="navigation" aria-label="Main navigation">
+    <a href="/">Home</a>
+    <a href="/#tools">Tools</a>
+    <a href="/#features">Features</a>
+    <a href="/#faq">FAQ</a>
+    <a href="/" class="nav-cta">All Tools →</a>
+  </nav>
+  <div class="hamburger" id="hamburger" role="button" aria-label="Toggle navigation" tabindex="0">
+    <span></span><span></span><span></span>
+  </div>
+</header>
+
+<!-- ─── PAGE HERO ─── -->
+<div class="page-hero">
+  <div class="page-badge"><span class="dot"></span> Facebook Preview Tool</div>
+  <h1 class="page-title">Preview Your <span class="hl">Facebook Post</span><br>Before Publishing</h1>
+  <p class="page-sub">Customize photos, reactions, comments, privacy and post style. See pixel-perfect results instantly — no account required.</p>
+</div>
+
+<!-- ─── MAIN TOOL ─── -->
+<div class="tool-wrapper" id="tool-top">
+
+  <!-- CONTROLS PANEL -->
+  <aside class="controls-panel" aria-label="Post customization controls">
+    <div class="panel-tabs" role="tablist">
+      <button class="panel-tab active" data-tab="profile" role="tab" onclick="switchTab('profile')">👤 Profile</button>
+      <button class="panel-tab" data-tab="content" role="tab" onclick="switchTab('content')">📝 Content</button>
+      <button class="panel-tab" data-tab="photos" role="tab" onclick="switchTab('photos')">📷 Photos</button>
+      <button class="panel-tab" data-tab="style" role="tab" onclick="switchTab('style')">🎨 Style</button>
+      <button class="panel-tab" data-tab="engage" role="tab" onclick="switchTab('engage')">💬 Engage</button>
+    </div>
+
+    <div class="panel-body">
+
+      <!-- PROFILE TAB -->
+      <div class="tab-pane active" id="tab-profile">
+        <div class="field">
+          <label>Profile Photo</label>
+          <div class="avatar-upload-row">
+            <div class="avatar-preview" id="avatarCircle" onclick="document.getElementById('avatarFileInput').click()" title="Upload profile photo">
+              <img id="avatarImg" alt="Profile" />
+              <span id="avatarInitials">FP</span>
+            </div>
+            <div class="avatar-upload-hint">
+              <strong onclick="document.getElementById('avatarFileInput').click()">Click to upload</strong><br>
+              your profile photo
+            </div>
+          </div>
+          <input type="file" id="avatarFileInput" accept="image/*" />
+        </div>
+
+        <div class="field">
+          <label>Display Name</label>
+          <input class="ctrl" type="text" id="fbName" placeholder="Your Name" value="Your Name" oninput="updatePreview()" />
+        </div>
+
+        <div class="field-row">
+          <div class="field">
+            <label>Time Display</label>
+            <input class="ctrl" type="text" id="fbTime" placeholder="Just now" value="Just now" oninput="updatePreview()" />
+          </div>
+          <div class="field">
+            <label>Privacy</label>
+            <select class="ctrl" id="fbPrivacy" onchange="updatePreview()">
+              <option value="public">🌍 Public</option>
+              <option value="friends">👥 Friends</option>
+              <option value="friends-except">👥– Friends except...</option>
+              <option value="specific">👤 Specific friends</option>
+              <option value="only-me">🔒 Only me</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="field">
+          <label>Post Type</label>
+          <select class="ctrl" id="fbPostType" onchange="updatePreview()">
+            <option value="regular">Regular Post</option>
+            <option value="sponsored">Sponsored</option>
+            <option value="shared">Shared Post</option>
+            <option value="tagged">Tagged Post</option>
+            <option value="memory">Memory</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label>Feeling / Activity (optional)</label>
+          <div class="field-row">
+            <select class="ctrl" id="fbFeelingEmoji" onchange="updatePreview()">
+              <option value="">None</option>
+              <option value="😊">😊 Happy</option>
+              <option value="😍">😍 Loved</option>
+              <option value="😂">😂 Funny</option>
+              <option value="😢">😢 Sad</option>
+              <option value="😠">😠 Angry</option>
+              <option value="🎉">🎉 Celebrating</option>
+              <option value="🤔">🤔 Thoughtful</option>
+              <option value="💪">💪 Motivated</option>
+              <option value="🙏">🙏 Grateful</option>
+              <option value="✈️">✈️ Travelling</option>
+              <option value="🍕">🍕 Eating</option>
+              <option value="🎵">🎵 Listening</option>
+            </select>
+            <input class="ctrl" id="fbFeelingText" type="text" placeholder="feeling great" oninput="updatePreview()" />
+          </div>
+        </div>
+
+        <div class="field">
+          <label>📍 Location Tag (optional)</label>
+          <input class="ctrl" type="text" id="fbLocation" placeholder="New York, USA" oninput="updatePreview()" />
+        </div>
+      </div>
+
+      <!-- CONTENT TAB -->
+      <div class="tab-pane" id="tab-content">
+        <div class="field">
+          <label>Post Text</label>
+          <textarea class="ctrl" id="fbText" placeholder="What's on your mind?" oninput="updatePreview()">Just launched something exciting! Can't wait to share more details. Stay tuned! 🚀✨ #Launch #Excited</textarea>
+        </div>
+
+        <div class="field">
+          <label>Text Size</label>
+          <select class="ctrl" id="fbTextSize" onchange="updatePreview()">
+            <option value="normal">Normal</option>
+            <option value="large">Large (short text)</option>
+            <option value="xl">Extra Large</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label>Link Preview (optional)</label>
+          <input class="ctrl" type="text" id="fbLinkUrl" placeholder="https://example.com" oninput="updateLinkPreview()" />
+        </div>
+        <div class="field" id="linkDetailsBlock" style="display:none;">
+          <label>Link Title</label>
+          <input class="ctrl" type="text" id="fbLinkTitle" placeholder="Page Title" oninput="updateLinkPreview()" />
+          <label style="margin-top:0.5rem;">Link Description</label>
+          <input class="ctrl" type="text" id="fbLinkDesc" placeholder="Short description" oninput="updateLinkPreview()" />
+        </div>
+
+        <div class="field">
+          <label>Tagged People (optional)</label>
+          <input class="ctrl" type="text" id="fbTagged" placeholder="with John Doe, Jane Smith" oninput="updatePreview()" />
+        </div>
+      </div>
+
+      <!-- PHOTOS TAB -->
+      <div class="tab-pane" id="tab-photos">
+        <div class="field">
+          <label>Upload Photos (up to 10)</label>
+          <div class="photo-upload-zone" onclick="document.getElementById('photoFileInput').click()">
+            <div class="puz-icon">📷</div>
+            <p>Click to add photos<br><small>JPG, PNG, GIF supported</small></p>
+          </div>
+          <input type="file" id="photoFileInput" accept="image/*" multiple style="display:none;" />
+        </div>
+
+        <div class="photo-thumbs-wrap" id="photoThumbs"></div>
+
+        <div class="field" id="photoCountNote" style="display:none; margin-top:0.25rem;">
+          <small style="color:var(--muted);font-size:0.78rem;" id="photoCountText"></small>
+        </div>
+
+        <div class="field">
+          <label>Photo Grid Layout</label>
+          <select class="ctrl" id="fbGridMode" onchange="updatePreview()">
+            <option value="auto">Auto (Facebook style)</option>
+            <option value="1">1 Photo – Full width</option>
+            <option value="2">2 Photos – Side by side</option>
+            <option value="3">3 Photos – 2+1 grid</option>
+            <option value="4">4 Photos – 2×2 grid</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label>Photo alt text / caption</label>
+          <input class="ctrl" type="text" id="fbPhotoAlt" placeholder="Describe your photo…" oninput="updatePreview()" />
+        </div>
+      </div>
+
+      <!-- STYLE TAB -->
+      <div class="tab-pane" id="tab-style">
+        <div class="field">
+          <label>Post Style</label>
+          <div class="style-grid" id="styleGrid">
+            <div class="style-tile active" data-style="regular" onclick="setStyle('regular')">
+              <span class="st-icon">📰</span>Regular
+            </div>
+            <div class="style-tile" data-style="bg-1" onclick="setStyle('bg-1')">
+              <span class="st-icon">🌅</span>Warm
+            </div>
+            <div class="style-tile" data-style="bg-2" onclick="setStyle('bg-2')">
+              <span class="st-icon">💜</span>Purple
+            </div>
+            <div class="style-tile" data-style="bg-3" onclick="setStyle('bg-3')">
+              <span class="st-icon">🌿</span>Green
+            </div>
+            <div class="style-tile" data-style="bg-4" onclick="setStyle('bg-4')">
+              <span class="st-icon">🌸</span>Pink
+            </div>
+            <div class="style-tile" data-style="bg-5" onclick="setStyle('bg-5')">
+              <span class="st-icon">🌸</span>Pastel
+            </div>
+            <div class="style-tile" data-style="bg-dark" onclick="setStyle('bg-dark')">
+              <span class="st-icon">🌑</span>Dark
+            </div>
+            <div class="style-tile" data-style="bg-white" onclick="setStyle('bg-white')">
+              <span class="st-icon">⬜</span>White
+            </div>
+            <div class="style-tile" data-style="text-only" onclick="setStyle('text-only')">
+              <span class="st-icon">📝</span>Text Only
+            </div>
+          </div>
+        </div>
+
+        <div class="field">
+          <label>Theme</label>
+          <select class="ctrl" id="fbTheme" onchange="updatePreview()">
+            <option value="light">☀️ Light (default)</option>
+            <option value="dark">🌙 Dark Mode</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label>Language Direction</label>
+          <select class="ctrl" id="fbDir" onchange="updatePreview()">
+            <option value="ltr">Left to Right (LTR)</option>
+            <option value="rtl">Right to Left (RTL)</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- ENGAGE TAB -->
+      <div class="tab-pane" id="tab-engage">
+        <div class="field">
+          <label>Reactions to Show</label>
+          <div class="reaction-picker" id="reactionPicker">
+            <div class="rxn-chip selected" data-rxn="👍" onclick="toggleReaction(this)"><span class="rxn-emoji">👍</span> Like</div>
+            <div class="rxn-chip selected" data-rxn="❤️" onclick="toggleReaction(this)"><span class="rxn-emoji">❤️</span> Love</div>
+            <div class="rxn-chip" data-rxn="😂" onclick="toggleReaction(this)"><span class="rxn-emoji">😂</span> Haha</div>
+            <div class="rxn-chip" data-rxn="😮" onclick="toggleReaction(this)"><span class="rxn-emoji">😮</span> Wow</div>
+            <div class="rxn-chip" data-rxn="😢" onclick="toggleReaction(this)"><span class="rxn-emoji">😢</span> Sad</div>
+            <div class="rxn-chip" data-rxn="😠" onclick="toggleReaction(this)"><span class="rxn-emoji">😠</span> Angry</div>
+          </div>
+        </div>
+
+        <div class="field">
+          <label>Engagement Numbers</label>
+          <div class="engagement-row">
+            <div class="eng-field">
+              <label>👍 Likes</label>
+              <input type="text" id="fbLikes" value="1,248" oninput="updatePreview()" />
+            </div>
+            <div class="eng-field">
+              <label>💬 Comments</label>
+              <input type="text" id="fbComments" value="84" oninput="updatePreview()" />
+            </div>
+            <div class="eng-field">
+              <label>↗️ Shares</label>
+              <input type="text" id="fbShares" value="37" oninput="updatePreview()" />
+            </div>
+          </div>
+        </div>
+
+        <div class="field">
+          <label>Preview Comments</label>
+          <div class="comment-list" id="commentList"></div>
+          <div class="add-comment-row">
+            <input class="ctrl" type="text" id="newCommentUser" placeholder="Name" style="max-width:90px;" />
+            <input class="ctrl" type="text" id="newCommentText" placeholder="Comment text…" />
+            <button class="btn-sm" onclick="addComment()">Add</button>
+          </div>
+        </div>
+
+        <div class="field">
+          <label>Show Comment Box</label>
+          <select class="ctrl" id="fbShowCommentBox" onchange="updatePreview()">
+            <option value="yes">Yes</option>
+            <option value="no">No</option>
+          </select>
+        </div>
+      </div>
+
+    </div><!-- /panel-body -->
+  </aside>
+
+  <!-- PREVIEW PANEL -->
+  <div class="preview-panel">
+    <div class="preview-header-row">
+      <div>
+        <h2>Live Preview</h2>
+        <p style="color:var(--muted);font-size:0.82rem;margin-top:2px;">Updates in real-time as you type</p>
+      </div>
+      <div style="display:flex;align-items:center;gap:0.75rem;flex-wrap:wrap;">
+        <div class="device-toggle">
+          <button class="device-btn active" onclick="setDevice('desktop')" id="deskBtn">🖥 Desktop</button>
+          <button class="device-btn" onclick="setDevice('mobile')" id="mobBtn">📱 Mobile</button>
+        </div>
+        <div class="preview-actions">
+          <button class="btn-action btn-screenshot" onclick="takeScreenshot()">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
+            Screenshot
+          </button>
+          <button class="btn-action btn-reset" onclick="resetAll()">↺ Reset</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- THE FACEBOOK POST PREVIEW -->
+    <div class="fb-preview-wrap">
+      <div class="fb-post" id="fbPost">
+
+        <!-- Sponsored label -->
+        <div class="fb-sponsored-tag" id="fbSponsoredTag">Sponsored</div>
+
+        <!-- Header -->
+        <div class="fb-post-header">
+          <div class="fb-avatar" id="fbAvatarPreview">
+            <img id="fbAvatarImg" alt="Profile" />
+            <span id="fbAvatarInitials">FP</span>
+          </div>
+          <div class="fb-post-meta">
+            <div class="fb-username" id="fbNameDisplay">Your Name</div>
+            <div class="fb-meta-text">
+              <span id="fbTimeDisplay">Just now</span>
+              <span class="fb-dot">·</span>
+              <span class="fb-privacy-icon" id="fbPrivacyIcon">🌍</span>
+            </div>
+            <div class="fb-meta-text" id="fbTaggedDisplay" style="display:none; color: #1877f2; font-size:0.75rem;"></div>
+          </div>
+          <button class="fb-more-btn" aria-label="More options">···</button>
+        </div>
+
+        <!-- Feeling / Location -->
+        <div class="fb-feeling-tag" id="fbFeelingDisplay"></div>
+        <div class="fb-location-tag" id="fbLocationDisplay"></div>
+
+        <!-- Post body (inside bg wrapper for color styles) -->
+        <div id="fbBgWrapper">
+          <div class="fb-post-body" id="fbTextDisplay" dir="ltr">Just launched something exciting! Can't wait to share more details. Stay tuned! 🚀✨ #Launch #Excited</div>
+        </div>
+
+        <!-- Photo grid -->
+        <div class="fb-photo-grid" id="fbPhotoGrid"></div>
+
+        <!-- Link card -->
+        <div class="fb-link-card" id="fbLinkCard">
+          <div class="fb-link-meta">
+            <div class="fb-link-domain" id="fbLinkDomainDisplay">example.com</div>
+            <div class="fb-link-title" id="fbLinkTitleDisplay">Page Title</div>
+            <div class="fb-link-desc" id="fbLinkDescDisplay">Short description of the page</div>
+          </div>
+        </div>
+
+        <!-- Engagement bar -->
+        <div class="fb-engagement-bar">
+          <div class="fb-reactions-summary">
+            <div class="fb-rxn-emojis" id="fbRxnEmojis"></div>
+            <span class="fb-rxn-count" id="fbLikesDisplay">1,248</span>
+          </div>
+          <div class="fb-shares-comments">
+            <span id="fbCommentsDisplay">84 comments</span>
+            <span id="fbSharesDisplay">37 shares</span>
+          </div>
+        </div>
+
+        <!-- Reaction bar -->
+        <div class="fb-reaction-bar">
+          <button class="fb-reaction-btn" id="fbLikeBtn" onclick="toggleFbLike()">
+            <span class="rb-icon">👍</span> Like
+          </button>
+          <button class="fb-reaction-btn">
+            <span class="rb-icon">💬</span> Comment
+          </button>
+          <button class="fb-reaction-btn">
+            <span class="rb-icon">↗️</span> Share
+          </button>
+        </div>
+
+        <!-- Comments section -->
+        <div class="fb-comments-section" id="fbCommentsSection">
+          <div id="fbPreviewComments"></div>
+          <div class="fb-comment-input-row" id="fbCommentInputRow">
+            <div class="fb-avatar" style="width:32px;height:32px;font-size:0.7rem;">
+              <span>You</span>
+            </div>
+            <input class="fb-comment-input" placeholder="Write a comment…" readonly />
+            <button class="fb-comment-send" aria-label="Send">🙂</button>
+          </div>
+        </div>
+
+      </div>
+    </div><!-- /fb-preview-wrap -->
+  </div><!-- /preview-panel -->
+
+</div><!-- /tool-wrapper -->
+
+<!-- ─── HOW IT WORKS ─── -->
+<section id="how-it-works" aria-labelledby="how-heading">
+  <div class="section-head">
+    <p class="section-label">How To Use</p>
+    <h2 class="section-title reveal" id="how-heading">Preview in 6 Easy Steps</h2>
+    <p class="section-sub reveal" style="transition-delay:0.1s">From blank to perfect in under a minute. Here's how to get the most out of the Facebook post preview tool.</p>
+  </div>
+  <div class="how-grid">
+    <div class="how-step">
+      <div class="how-num">1</div>
+      <h3>Enter Your Profile</h3>
+      <p>Add your display name, upload a profile photo, and set your privacy preference under the Profile tab.</p>
+    </div>
+    <div class="how-step">
+      <div class="how-num">2</div>
+      <h3>Write Your Post</h3>
+      <p>Type or paste your post text in the Content tab. Add emojis, hashtags, link URLs, and tagged people.</p>
+    </div>
+    <div class="how-step">
+      <div class="how-num">3</div>
+      <h3>Add Photos</h3>
+      <p>Upload up to 10 images via the Photos tab. Choose your preferred grid layout or let it auto-arrange.</p>
+    </div>
+    <div class="how-step">
+      <div class="how-num">4</div>
+      <h3>Pick a Style</h3>
+      <p>Select a post style — regular feed, background color post, dark mode, or text-only — from the Style tab.</p>
+    </div>
+    <div class="how-step">
+      <div class="how-num">5</div>
+      <h3>Customize Engagement</h3>
+      <p>Set custom like counts, reaction emojis, comment count, shares, and add realistic preview comments.</p>
+    </div>
+    <div class="how-step">
+      <div class="how-num">6</div>
+      <h3>Screenshot & Download</h3>
+      <p>Click the Screenshot button to download a pixel-perfect PNG of your Facebook post preview instantly.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ─── DESCRIPTION ─── -->
+<section id="description" aria-labelledby="desc-heading">
+  <div class="desc-grid">
+    <div class="desc-text">
+      <p class="section-label">About This Tool</p>
+      <h2 id="desc-heading">The Most Complete Facebook Post Preview Tool</h2>
+      <p>Creating content for Facebook without previewing it is like publishing blind. Our free Facebook post preview tool gives you a real-time, pixel-accurate simulation of exactly how your post will look in the Facebook feed — before you ever click publish.</p>
+      <p>Whether you're a social media manager planning client campaigns, a business crafting product announcements, a content creator fine-tuning personal posts, or a developer building marketing materials, FeedPreview's Facebook tool saves time and eliminates surprises.</p>
+      <p>All processing happens entirely in your browser. We never store your data, your images, or your text. Your privacy is fully protected.</p>
+    </div>
+
+    <div class="desc-features">
+      <div class="desc-feat">
+        <div class="df-icon">📷</div>
+        <div>
+          <h4>Multi-Photo Grid</h4>
+          <p>Upload up to 10 photos and instantly see them arranged in Facebook's authentic multi-image grid layout — 1, 2, 3, 4+ photo configurations.</p>
+        </div>
+      </div>
+      <div class="desc-feat">
+        <div class="df-icon">🎨</div>
+        <div>
+          <h4>Background Color Posts</h4>
+          <p>Preview Facebook's colored background text posts with 7 different gradient and solid color styles.</p>
+        </div>
+      </div>
+      <div class="desc-feat">
+        <div class="df-icon green">🌙</div>
+        <div>
+          <h4>Dark Mode Preview</h4>
+          <p>Switch between Facebook's light and dark themes to see how your post renders for users with dark mode enabled.</p>
+        </div>
+      </div>
+      <div class="desc-feat">
+        <div class="df-icon purple">😍</div>
+        <div>
+          <h4>Reactions & Engagement</h4>
+          <p>Choose which reaction emojis appear, set custom like/comment/share counts, and add preview comments with fake usernames.</p>
+        </div>
+      </div>
+      <div class="desc-feat">
+        <div class="df-icon">🔒</div>
+        <div>
+          <h4>Privacy & Post Type</h4>
+          <p>Simulate Public, Friends, Friends Except, Specific Friends, or Only Me privacy settings. Preview sponsored, memory, and shared post formats.</p>
+        </div>
+      </div>
+      <div class="desc-feat">
+        <div class="df-icon green">📸</div>
+        <div>
+          <h4>One-Click Screenshot</h4>
+          <p>Download a high-quality PNG of your post preview with a single click — no watermarks, no subscriptions needed.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── FAQ ─── -->
+<section id="faq-section" aria-labelledby="faq-heading">
+  <div class="section-head">
+    <p class="section-label">FAQ</p>
+    <h2 class="section-title reveal" id="faq-heading">Frequently Asked Questions</h2>
+    <p class="section-sub reveal" style="transition-delay:0.1s">Everything you need to know about the Facebook post preview tool.</p>
+  </div>
+  <div class="faq-grid">
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">Is the Facebook post preview tool free? <span class="faq-icon">+</span></div>
+      <div class="faq-a">Yes, completely free. No account, no subscription, no hidden fees. Use it as many times as you want with no limitations.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">Does it upload my images or text anywhere? <span class="faq-icon">+</span></div>
+      <div class="faq-a">Never. All previewing happens entirely inside your browser. Your images, text, and data are never uploaded to any server. Total privacy guaranteed.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">How many photos can I add to the preview? <span class="faq-icon">+</span></div>
+      <div class="faq-a">You can upload up to 10 photos. They are arranged automatically in Facebook's native grid layouts (1, 2, 3, 4, or 5+ photo configurations), or you can manually select the grid style.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">Can I preview Facebook dark mode? <span class="faq-icon">+</span></div>
+      <div class="faq-a">Yes! Switch to Dark Mode under the Style tab to see exactly how your post looks for users who have Facebook's dark theme enabled on their device.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">Can I download the post preview as an image? <span class="faq-icon">+</span></div>
+      <div class="faq-a">Yes. Click the Screenshot button at the top of the preview area to download a PNG of your post. The tool uses html2canvas to capture the rendered preview.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">How accurate is the preview compared to real Facebook? <span class="faq-icon">+</span></div>
+      <div class="faq-a">Our preview is built to closely mirror Facebook's actual post design including typography, spacing, reaction icons, comment layout, and photo grids. Minor visual differences may exist due to platform updates.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">Can I preview RTL (Arabic, Hebrew) posts? <span class="faq-icon">+</span></div>
+      <div class="faq-a">Yes. Go to the Style tab and switch Language Direction to "Right to Left (RTL)" to preview how your post reads in RTL languages like Arabic or Hebrew.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── FOOTER ─── -->
+<footer role="contentinfo">
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <a class="logo" href="/">FeedPreview</a>
+      <p>The free social media post preview tool for creators, marketers, and brands who want to perfect every post before publishing.</p>
+      <div class="social-links" aria-label="Social media links">
+        <a href="#" class="social-link" aria-label="Twitter">𝕏</a>
+        <a href="#" class="social-link" aria-label="Instagram">📸</a>
+        <a href="#" class="social-link" aria-label="LinkedIn">in</a>
+        <a href="#" class="social-link" aria-label="GitHub">⌥</a>
+      </div>
+    </div>
+
+    <div class="footer-widget">
+      <h4>Popular Tools</h4>
+      <ul>
+        <li><a href="instagram-post-preview">Instagram Post Preview</a></li>
+        <li><a href="facebook-post-preview">Facebook Post Preview</a></li>
+        <li><a href="twitter-post-preview">Twitter / X Post Preview</a></li>
+        <li><a href="linkedin-post-preview">LinkedIn Post Preview</a></li>
+        <li><a href="tiktok-post-preview">TikTok Post Preview</a></li>
+        <li><a href="youtube-post-preview">YouTube Post Preview</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-widget">
+      <h4>Resources</h4>
+      <ul>
+        <li><a href="#how">How It Works</a></li>
+        <li><a href="#faq">FAQ</a></li>
+        <li><a href="#features">Features</a></li>        
+        <li><a href="blog">Blog</a></li>        
+      </ul>
+    </div>
+
+    <div class="footer-widget">
+      <h4>Legal</h4>
+      <ul>
+        <li><a href="privacy">Privacy Policy</a></li>
+        <li><a href="terms">Terms of Service</a></li>
+        <li><a href="cookie">Cookie Policy</a></li>
+        <li><a href="contact">Contact Us</a></li>
+        <li><a href="sitemap.xml">Sitemap</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <p>© 2026 <a href="/">FeedPreview</a>. Free social media preview tools.</p>
+    <p>Made with ♥ for creators everywhere</p>
+  </div>
+</footer>
+
+<!-- Toast -->
+<div class="toast" id="toast"></div>
+
+<!-- html2canvas for screenshot -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
+<script>
+  /* ─── STATE ─── */
+  let fbPhotos = [];
+  let activeStyle = 'regular';
+  let fbCommentsList = [
+    { user: 'Sarah M.', text: 'This is amazing! 🎉' },
+    { user: 'James K.', text: 'Congrats on the launch! 🚀' }
+  ];
+  let fbLiked = false;
+  let currentDevice = 'desktop';
+
+  const privacyIcons = {
+    'public': '🌍', 'friends': '👥', 'friends-except': '👥',
+    'specific': '👤', 'only-me': '🔒'
+  };
+
+  /* ─── TABS ─── */
+  function switchTab(id) {
+    document.querySelectorAll('.panel-tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.tab-pane').forEach(p => p.classList.remove('active'));
+    document.querySelector(`[data-tab="${id}"]`).classList.add('active');
+    document.getElementById('tab-' + id).classList.add('active');
+  }
+
+  /* ─── DEVICE TOGGLE ─── */
+  function setDevice(d) {
+    currentDevice = d;
+    document.getElementById('deskBtn').classList.toggle('active', d === 'desktop');
+    document.getElementById('mobBtn').classList.toggle('active', d === 'mobile');
+    document.getElementById('fbPost').classList.toggle('mobile-view', d === 'mobile');
+  }
+
+  /* ─── AVATAR UPLOAD ─── */
+  document.getElementById('avatarFileInput').addEventListener('change', function(e) {
+    const file = e.target.files[0];
+    if (!file) return;
+    const r = new FileReader();
+    r.onload = ev => {
+      // Control panel circle
+      const aImg = document.getElementById('avatarImg');
+      aImg.src = ev.target.result;
+      aImg.style.display = 'block';
+      document.getElementById('avatarInitials').style.display = 'none';
+      // Preview
+      const fbAImg = document.getElementById('fbAvatarImg');
+      fbAImg.src = ev.target.result;
+      fbAImg.style.display = 'block';
+      document.getElementById('fbAvatarInitials').style.display = 'none';
+    };
+    r.readAsDataURL(file);
+  });
+
+  /* ─── PHOTO UPLOAD ─── */
+  document.getElementById('photoFileInput').addEventListener('change', function(e) {
+    const files = Array.from(e.target.files);
+    const rem = 10 - fbPhotos.length;
+    files.slice(0, rem).forEach(f => {
+      const r = new FileReader();
+      r.onload = ev => {
+        fbPhotos.push(ev.target.result);
+        renderPhotoThumbs();
+        renderPhotoGrid();
+      };
+      r.readAsDataURL(f);
+    });
+    this.value = '';
+  });
+
+  function removePhoto(i) {
+    fbPhotos.splice(i, 1);
+    renderPhotoThumbs();
+    renderPhotoGrid();
+  }
+
+  function renderPhotoThumbs() {
+    const wrap = document.getElementById('photoThumbs');
+    wrap.innerHTML = '';
+    fbPhotos.forEach((src, i) => {
+      const th = document.createElement('div');
+      th.className = 'photo-thumb';
+      th.innerHTML = `<img src="${src}" alt="Photo ${i+1}"><button class="rm-btn" onclick="removePhoto(${i})">✕</button>`;
+      wrap.appendChild(th);
+    });
+    if (fbPhotos.length < 10) {
+      const add = document.createElement('div');
+      add.className = 'photo-thumb-add';
+      add.title = 'Add more photos';
+      add.innerHTML = '+';
+      add.onclick = () => document.getElementById('photoFileInput').click();
+      wrap.appendChild(add);
+    }
+    const note = document.getElementById('photoCountNote');
+    const txt = document.getElementById('photoCountText');
+    if (fbPhotos.length > 0) {
+      note.style.display = 'block';
+      txt.textContent = `${fbPhotos.length}/10 photo${fbPhotos.length > 1 ? 's' : ''} added`;
+    } else {
+      note.style.display = 'none';
+    }
+  }
+
+  function renderPhotoGrid() {
+    const grid = document.getElementById('fbPhotoGrid');
+    grid.innerHTML = '';
+    if (!fbPhotos.length) return;
+
+    const mode = document.getElementById('fbGridMode').value;
+    const count = fbPhotos.length;
+    const eff = mode === 'auto' ? count : parseInt(mode);
+
+    if (eff <= 1 || count === 1) {
+      grid.innerHTML = `<div class="fb-grid-1"><img src="${fbPhotos[0]}" alt="Post photo"></div>`;
+    } else if (eff === 2 || count === 2) {
+      const src2 = fbPhotos[1] || fbPhotos[0];
+      grid.innerHTML = `<div class="fb-grid-2"><img src="${fbPhotos[0]}" alt="Photo 1"><img src="${src2}" alt="Photo 2"></div>`;
+    } else if (eff === 3 || count === 3) {
+      const p = fbPhotos;
+      grid.innerHTML = `<div class="fb-grid-3">
+        <div class="fb-grid-main"><img src="${p[0]}" alt="Photo 1"></div>
+        <div class="fb-grid-side"><img src="${p[1]||p[0]}" alt="Photo 2"><img src="${p[2]||p[0]}" alt="Photo 3"></div>
+      </div>`;
+    } else if (eff === 4 || count === 4) {
+      grid.innerHTML = `<div class="fb-grid-4">
+        ${fbPhotos.slice(0,4).map((s,i)=>`<img src="${s}" alt="Photo ${i+1}">`).join('')}
+      </div>`;
+    } else {
+      // 5+ photos
+      const extra = count - 4;
+      const shown = fbPhotos.slice(0,3);
+      const overlayImg = fbPhotos[3];
+      grid.innerHTML = `
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:2px;">
+          ${shown.map((s,i)=>`<img src="${s}" alt="Photo ${i+1}" style="width:100%;height:180px;object-fit:cover;display:block;">`).join('')}
+          <div style="position:relative;">
+            <img src="${overlayImg}" alt="More" style="width:100%;height:180px;object-fit:cover;display:block;">
+            <div style="position:absolute;inset:0;background:rgba(0,0,0,0.5);display:flex;align-items:center;justify-content:center;color:#fff;font-size:1.8rem;font-weight:700;">+${extra}</div>
+          </div>
+        </div>`;
+    }
+  }
+
+  /* ─── STYLE TILES ─── */
+  function setStyle(s) {
+    activeStyle = s;
+    document.querySelectorAll('.style-tile').forEach(t => t.classList.remove('active'));
+    document.querySelector(`[data-style="${s}"]`).classList.add('active');
+    updatePreview();
+  }
+
+  /* ─── REACTIONS ─── */
+  function toggleReaction(el) {
+    el.classList.toggle('selected');
+    updatePreview();
+  }
+
+  function getSelectedReactions() {
+    return Array.from(document.querySelectorAll('.rxn-chip.selected')).map(c => c.dataset.rxn);
+  }
+
+  /* ─── COMMENTS ─── */
+  function renderCommentListControl() {
+    const list = document.getElementById('commentList');
+    list.innerHTML = '';
+    fbCommentsList.forEach((c, i) => {
+      const div = document.createElement('div');
+      div.className = 'comment-item';
+      div.innerHTML = `<span class="ci-user">${c.user}</span><span class="ci-text">${c.text}</span><button class="ci-del" onclick="removeComment(${i})">✕</button>`;
+      list.appendChild(div);
+    });
+  }
+
+  function addComment() {
+    const user = document.getElementById('newCommentUser').value.trim() || 'User';
+    const text = document.getElementById('newCommentText').value.trim();
+    if (!text) return;
+    fbCommentsList.push({ user, text });
+    document.getElementById('newCommentUser').value = '';
+    document.getElementById('newCommentText').value = '';
+    renderCommentListControl();
+    updatePreview();
+  }
+
+  function removeComment(i) {
+    fbCommentsList.splice(i, 1);
+    renderCommentListControl();
+    updatePreview();
+  }
+
+  /* ─── LIKE TOGGLE ─── */
+  function toggleFbLike() {
+    fbLiked = !fbLiked;
+    const btn = document.getElementById('fbLikeBtn');
+    btn.classList.toggle('liked', fbLiked);
+    btn.innerHTML = fbLiked
+      ? '<span class="rb-icon">❤️</span> Liked'
+      : '<span class="rb-icon">👍</span> Like';
+    // bump likes
+    const inp = document.getElementById('fbLikes');
+    let n = parseInt(inp.value.replace(/,/g,'')) || 0;
+    n = fbLiked ? n + 1 : Math.max(0, n - 1);
+    inp.value = n.toLocaleString();
+    updatePreview();
+  }
+
+  /* ─── LINK PREVIEW ─── */
+  function updateLinkPreview() {
+    const url = document.getElementById('fbLinkUrl').value.trim();
+    const card = document.getElementById('fbLinkCard');
+    const block = document.getElementById('linkDetailsBlock');
+    if (url) {
+      block.style.display = 'flex';
+      block.style.flexDirection = 'column';
+      block.style.gap = '0.4rem';
+      card.classList.add('visible');
+      try {
+        const domain = new URL(url).hostname.replace('www.','');
+        document.getElementById('fbLinkDomainDisplay').textContent = domain;
+      } catch(e) {
+        document.getElementById('fbLinkDomainDisplay').textContent = url;
+      }
+      document.getElementById('fbLinkTitleDisplay').textContent =
+        document.getElementById('fbLinkTitle').value || 'Page Title';
+      document.getElementById('fbLinkDescDisplay').textContent =
+        document.getElementById('fbLinkDesc').value || '';
+    } else {
+      block.style.display = 'none';
+      card.classList.remove('visible');
+    }
+  }
+
+  /* ─── MAIN UPDATE ─── */
+  function updatePreview() {
+    const name      = document.getElementById('fbName').value.trim() || 'Your Name';
+    const time      = document.getElementById('fbTime').value.trim() || 'Just now';
+    const privacy   = document.getElementById('fbPrivacy').value;
+    const postType  = document.getElementById('fbPostType').value;
+    const text      = document.getElementById('fbText').value;
+    const textSize  = document.getElementById('fbTextSize').value;
+    const tagged    = document.getElementById('fbTagged').value.trim();
+    const theme     = document.getElementById('fbTheme').value;
+    const dir       = document.getElementById('fbDir').value;
+    const feelEmoji = document.getElementById('fbFeelingEmoji').value;
+    const feelText  = document.getElementById('fbFeelingText').value.trim();
+    const location  = document.getElementById('fbLocation').value.trim();
+    const likes     = document.getElementById('fbLikes').value || '0';
+    const comments  = document.getElementById('fbComments').value || '0';
+    const shares    = document.getElementById('fbShares').value || '0';
+    const showComBox= document.getElementById('fbShowCommentBox').value;
+
+    // Name + avatar initials
+    document.getElementById('fbNameDisplay').textContent = name;
+    const initials = name.split(' ').map(w=>w[0]).join('').slice(0,2).toUpperCase();
+    document.getElementById('fbAvatarInitials').textContent = initials;
+    document.getElementById('avatarInitials').textContent  = initials;
+
+    // Time + privacy
+    document.getElementById('fbTimeDisplay').textContent = time;
+    document.getElementById('fbPrivacyIcon').textContent  = privacyIcons[privacy] || '🌍';
+
+    // Tagged
+    const tagEl = document.getElementById('fbTaggedDisplay');
+    if (tagged) { tagEl.style.display = 'flex'; tagEl.textContent = '— ' + tagged; }
+    else tagEl.style.display = 'none';
+
+    // Feeling
+    const feelEl = document.getElementById('fbFeelingDisplay');
+    if (feelEmoji || feelText) {
+      feelEl.classList.add('visible');
+      feelEl.textContent = `is feeling ${feelEmoji} ${feelText}`.trim();
+    } else feelEl.classList.remove('visible');
+
+    // Location
+    const locEl = document.getElementById('fbLocationDisplay');
+    if (location) { locEl.classList.add('visible'); locEl.innerHTML = `📍 ${location}`; }
+    else locEl.classList.remove('visible');
+
+    // Sponsored / post type
+    const sTag = document.getElementById('fbSponsoredTag');
+    sTag.textContent = postType === 'sponsored' ? 'Sponsored' : postType === 'memory' ? '📅 Memory' : postType === 'shared' ? '🔁 Shared' : '';
+    sTag.classList.toggle('visible', postType !== 'regular' && postType !== 'tagged');
+
+    // Text
+    const textEl = document.getElementById('fbTextDisplay');
+    textEl.textContent = text;
+    textEl.className = 'fb-post-body' + (textSize === 'large' ? ' large-text' : textSize === 'xl' ? ' xl-text' : '');
+    textEl.dir = dir;
+
+    // Style
+    const post = document.getElementById('fbPost');
+    const bgWrap = document.getElementById('fbBgWrapper');
+    post.className = 'fb-post' + (currentDevice === 'mobile' ? ' mobile-view' : '') + (theme === 'dark' ? ' dark-theme' : '');
+    bgWrap.className = '';
+    bgWrap.style.cssText = '';
+
+    const bgMap = {
+      'bg-1': 'fb-bg-gradient-1',
+      'bg-2': 'fb-bg-gradient-2',
+      'bg-3': 'fb-bg-gradient-3',
+      'bg-4': 'fb-bg-gradient-4',
+      'bg-5': 'fb-bg-gradient-5',
+      'bg-dark': 'fb-bg-solid-black',
+      'bg-white': 'fb-bg-solid-white',
+    };
+
+    if (bgMap[activeStyle]) {
+      bgWrap.className = 'fb-bg-post ' + bgMap[activeStyle];
+      textEl.className = 'fb-post-body large-text';
+      if (['bg-2','bg-3','bg-dark'].includes(activeStyle)) {
+        textEl.style.color = '#fff';
+      } else if (activeStyle === 'bg-white') {
+        textEl.style.color = '#1c1e21';
+      } else {
+        textEl.style.color = '#1c1e21';
+      }
+    } else if (activeStyle === 'text-only') {
+      post.classList.add('style-text-only');
+    }
+
+    if (theme === 'dark') textEl.style.color = '#e4e6eb';
+
+    // Reactions
+    const rxns = getSelectedReactions();
+    const rxnEl = document.getElementById('fbRxnEmojis');
+    rxnEl.innerHTML = rxns.map(r => `<span>${r}</span>`).join('');
+
+    document.getElementById('fbLikesDisplay').textContent = likes;
+    document.getElementById('fbCommentsDisplay').textContent = comments + ' comments';
+    document.getElementById('fbSharesDisplay').textContent  = shares + ' shares';
+
+    // Comments preview
+    const previewCom = document.getElementById('fbPreviewComments');
+    previewCom.innerHTML = '';
+    fbCommentsList.slice(0, 3).forEach(c => {
+      const initC = c.user.split(' ').map(w=>w[0]).join('').slice(0,2).toUpperCase();
+      const div = document.createElement('div');
+      div.className = 'fb-single-comment';
+      div.innerHTML = `
+        <div class="fc-avatar">${initC}</div>
+        <div class="fc-bubble">
+          <div class="fc-text">
+            <div class="fc-name">${c.user}</div>
+            <div class="fc-body">${c.text}</div>
+          </div>
+          <div class="fc-actions">
+            <span>Like</span>
+            <span>Reply</span>
+            <span class="fc-time">Just now</span>
+          </div>
+        </div>`;
+      previewCom.appendChild(div);
+    });
+
+    // Show/hide comment input box
+    document.getElementById('fbCommentInputRow').style.display =
+      showComBox === 'yes' ? 'flex' : 'none';
+
+    // Photo grid
+    renderPhotoGrid();
+    updateLinkPreview();
+  }
+
+  /* ─── SCREENSHOT ─── */
+  function takeScreenshot() {
+    showToast('📸 Capturing screenshot…');
+    const el = document.getElementById('fbPost');
+    html2canvas(el, {
+      scale: 2,
+      useCORS: true,
+      backgroundColor: null,
+      logging: false
+    }).then(canvas => {
+      const link = document.createElement('a');
+      link.download = 'facebook-post-preview.png';
+      link.href = canvas.toDataURL('image/png');
+      link.click();
+      showToast('✅ Screenshot downloaded!');
+    }).catch(() => showToast('❌ Screenshot failed. Try again.'));
+  }
+
+  /* ─── RESET ─── */
+  function resetAll() {
+    document.getElementById('fbName').value = 'Your Name';
+    document.getElementById('fbTime').value = 'Just now';
+    document.getElementById('fbPrivacy').value = 'public';
+    document.getElementById('fbPostType').value = 'regular';
+    document.getElementById('fbText').value = 'Just launched something exciting! Can\'t wait to share more details. Stay tuned! 🚀✨ #Launch #Excited';
+    document.getElementById('fbTextSize').value = 'normal';
+    document.getElementById('fbTheme').value = 'light';
+    document.getElementById('fbDir').value = 'ltr';
+    document.getElementById('fbLikes').value = '1,248';
+    document.getElementById('fbComments').value = '84';
+    document.getElementById('fbShares').value = '37';
+    document.getElementById('fbFeelingEmoji').value = '';
+    document.getElementById('fbFeelingText').value = '';
+    document.getElementById('fbLocation').value = '';
+    document.getElementById('fbTagged').value = '';
+    document.getElementById('fbLinkUrl').value = '';
+    document.getElementById('fbGridMode').value = 'auto';
+    fbPhotos = [];
+    fbCommentsList = [
+      { user: 'Sarah M.', text: 'This is amazing! 🎉' },
+      { user: 'James K.', text: 'Congrats on the launch! 🚀' }
+    ];
+    fbLiked = false;
+    document.getElementById('fbLikeBtn').classList.remove('liked');
+    document.getElementById('fbLikeBtn').innerHTML = '<span class="rb-icon">👍</span> Like';
+    // Reset avatars
+    document.getElementById('avatarImg').style.display = 'none';
+    document.getElementById('avatarInitials').style.display = '';
+    document.getElementById('fbAvatarImg').style.display = 'none';
+    document.getElementById('fbAvatarInitials').style.display = '';
+    // Reset reactions
+    document.querySelectorAll('.rxn-chip').forEach((c,i) => c.classList.toggle('selected', i < 2));
+    setStyle('regular');
+    renderPhotoThumbs();
+    renderCommentListControl();
+    updatePreview();
+    setDevice('desktop');
+    showToast('↺ Preview reset');
+  }
+
+  /* ─── TOAST ─── */
+  function showToast(msg) {
+    const t = document.getElementById('toast');
+    t.textContent = msg;
+    t.classList.add('show');
+    setTimeout(() => t.classList.remove('show'), 2800);
+  }
+
+  /* ─── FAQ ─── */
+  function toggleFaq(el) {
+    const item = el.parentElement;
+    const open = item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+    if (!open) item.classList.add('open');
+  }
+
+  /* ─── HAMBURGER ─── */
+  const hamburger = document.getElementById('hamburger');
+  const nav = document.getElementById('main-nav');
+  hamburger.addEventListener('click', () => nav.classList.toggle('open'));
+
+  /* ─── HEADER SCROLL ─── */
+  window.addEventListener('scroll', () => {
+    document.getElementById('site-header').style.background =
+      window.scrollY > 40 ? 'rgba(10,10,15,0.95)' : 'rgba(10,10,15,0.85)';
+  });
+
+  /* ─── SCROLL REVEAL ─── */
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); }
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal, .how-step, .desc-feat').forEach(el => io.observe(el));
+
+  /* ─── INIT ─── */
+  renderCommentListControl();
+  updatePreview();
+</script>
+</body>
+</html>
