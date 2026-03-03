@@ -1,1 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head> 
+  
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About Us – FeedPreview</title>
+  <meta name="description" content="Learn more about FeedPreview, our mission to simplify social media planning, and the tools we build for creators." />
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" /> 
 
+  <style>
+    /* ─── FOOTER ─── */
+    footer {
+      background: var(--bg2);
+      border-top: 1px solid var(--border);
+      padding: 60px 5% 30px;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 3rem;
+      margin-bottom: 3rem;
+    }
+
+    .footer-brand .logo { font-size: 1.4rem; margin-bottom: 0.75rem; display: inline-block; }
+    .footer-brand p { color: var(--muted); font-size: 0.88rem; line-height: 1.7; max-width: 280px; margin-bottom: 1.5rem; }
+
+    .social-links { display: flex; gap: 0.75rem; }
+    .social-link {
+      width: 36px; height: 36px;
+      border-radius: 10px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      text-decoration: none;
+      font-size: 0.85rem;
+      color: var(--muted);
+      transition: background 0.2s, color 0.2s, border-color 0.2s;
+    }
+    .social-link:hover { background: var(--accent); border-color: var(--accent); color: #fff; }
+
+    .footer-widget h4 {
+      font-family: var(--font-head);
+      font-size: 0.9rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      margin-bottom: 1.2rem;
+      color: var(--text);
+    }
+    .footer-widget ul { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
+    .footer-widget a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.88rem;
+      transition: color 0.2s;
+    }
+    .footer-widget a:hover { color: var(--text); }
+
+    .footer-bottom {
+      border-top: 1px solid var(--border);
+      padding-top: 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .footer-bottom p { color: var(--muted); font-size: 0.82rem; }
+    .footer-bottom a { color: var(--muted); text-decoration: none; }
+    .footer-bottom a:hover { color: var(--text); }
+    /* Inherited Styles from index.html */
+    :root {
+      --bg: #0a0a0f;
+      --bg2: #0f0f18;
+      --card: #13131e;
+      --border: rgba(255,255,255,0.07);
+      --accent: #ff3c6e;
+      --accent2: #7b61ff;
+      --text: #f0f0f5;
+      --muted: #8888a0;
+      --font-head: 'Syne', sans-serif;
+      --font-body: 'DM Sans', sans-serif;
+      --radius: 20px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-body);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* Noise Texture */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 9999;
+      opacity: 0.35;
+    }
+
+    /* Header */
+    header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      padding: 0 5%;
+      height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(10,10,15,0.8);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .logo {
+      font-family: var(--font-head);
+      font-size: 1.5rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-decoration: none;
+    }
+
+    nav a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      margin-left: 2rem;
+      transition: color 0.2s;
+    }
+    nav a:hover { color: var(--text); }
+
+    /* About Content Section */
+    #about-hero {
+      padding: 140px 5% 80px;
+      text-align: center;
+      position: relative;
+    }
+
+    .about-container {
+      max-width: 800px;
+      margin: 0 auto;
+      text-align: left;
+    }
+
+    .about-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 3rem;
+      margin-top: 2rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .about-title {
+      font-family: var(--font-head);
+      font-size: clamp(2.5rem, 5vw, 3.5rem);
+      font-weight: 800;
+      margin-bottom: 1.5rem;
+      background: linear-gradient(90deg, var(--text), var(--muted));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .about-subtitle {
+      color: var(--accent);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      font-size: 0.9rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .about-text {
+      font-size: 1.1rem;
+      color: var(--muted);
+      margin-bottom: 2rem;
+      line-height: 1.8;
+    }
+
+    .mission-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+
+    .mission-item h3 {
+      font-family: var(--font-head);
+      color: var(--text);
+      margin-bottom: 0.5rem;
+    }
+
+    .hero-glow {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(100px);
+      pointer-events: none;
+      z-index: 0;
+    }
+    .glow-1 { width: 500px; height: 500px; background: rgba(123,97,255,0.1); top: 10%; right: -10%; }
+
+    footer {
+      background: var(--bg2);
+      border-top: 1px solid var(--border);
+      padding: 60px 5% 30px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+  <header id="site-header">
+    <a href="index.html" class="logo">FeedPreview</a>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="index.html#tools">Tools</a>
+      <a href="about.html" style="color: var(--text);">About</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </header>
+
+  <section id="about-hero">
+    <div class="hero-glow glow-1"></div>
+    
+    <div class="about-container">
+      <p class="about-subtitle">Our Story</p>
+      <h1 class="about-title">Visualizing Social Success</h1>
+      
+      <div class="about-card">
+        <p class="about-text">
+          FeedPreview was born out of a simple need: to see exactly how content looks before the world does. In the fast-paced world of social media, first impressions are everything. We believe that every creator, from solo influencers to large agencies, deserves professional-grade tools to perfect their digital aesthetic.
+        </p>
+        
+        <p class="about-text">
+          Our mission is to eliminate the "post and pray" strategy. By providing accurate, real-time previews for Instagram, Facebook, Twitter, and more, we help you maintain a cohesive brand identity and catch errors before they go live.
+        </p>
+
+        <div class="mission-grid">
+          <div class="mission-item">
+            <h3>Free Forever</h3>
+            <p>We provide essential tools at no cost, helping creators grow without barriers.</p>
+          </div>
+          <div class="mission-item">
+            <h3>Privacy First</h3>
+            <p>Your data stays with you. We don't store your drafts or personal information.</p>
+          </div>
+          <div class="mission-item">
+            <h3>Real-Time</h3>
+            <p>See changes instantly as you type and upload, ensuring a seamless workflow.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p style="color: var(--muted); font-size: 0.85rem;">&copy; 2025 FeedPreview. All rights reserved.</p>
+  </footer>
+
+</body>
+</html>
