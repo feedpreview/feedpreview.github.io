@@ -1,13 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-VHDPDPH86C"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-VHDPDPH86C');
-  </script>
+  
   
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -17,25 +11,70 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
 
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "AboutPage",
-    "name": "About FeedPreview",
-    "description": "Information about FeedPreview, its mission, and the social media preview tools it provides.",
-    "url": "https://feedpreview.github.io/about.html",
-    "publisher": {
-      "@type": "Organization",
-      "name": "FeedPreview",
-      "logo": {
-        "@type": "ImageObject",
-        "url": "https://feedpreview.github.io/logo.png"
-      }
-    }
-  }
-  </script>
+  
 
   <style>
+     /* ─── FOOTER ─── */
+    footer {
+      background: var(--bg2);
+      border-top: 1px solid var(--border);
+      padding: 60px 5% 30px;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 3rem;
+      margin-bottom: 3rem;
+    }
+
+    .footer-brand .logo { font-size: 1.4rem; margin-bottom: 0.75rem; display: inline-block; }
+    .footer-brand p { color: var(--muted); font-size: 0.88rem; line-height: 1.7; max-width: 280px; margin-bottom: 1.5rem; }
+
+    .social-links { display: flex; gap: 0.75rem; }
+    .social-link {
+      width: 36px; height: 36px;
+      border-radius: 10px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      text-decoration: none;
+      font-size: 0.85rem;
+      color: var(--muted);
+      transition: background 0.2s, color 0.2s, border-color 0.2s;
+    }
+    .social-link:hover { background: var(--accent); border-color: var(--accent); color: #fff; }
+
+    .footer-widget h4 {
+      font-family: var(--font-head);
+      font-size: 0.9rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      margin-bottom: 1.2rem;
+      color: var(--text);
+    }
+    .footer-widget ul { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
+    .footer-widget a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.88rem;
+      transition: color 0.2s;
+    }
+    .footer-widget a:hover { color: var(--text); }
+
+    .footer-bottom {
+      border-top: 1px solid var(--border);
+      padding-top: 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .footer-bottom p { color: var(--muted); font-size: 0.82rem; }
+    .footer-bottom a { color: var(--muted); text-decoration: none; }
+    .footer-bottom a:hover { color: var(--text); }
     /* Inherited Styles from index.html */
     :root {
       --bg: #0a0a0f;
@@ -231,9 +270,59 @@
     </div>
   </section>
 
-  <footer>
-    <p style="color: var(--muted); font-size: 0.85rem;">&copy; 2025 FeedPreview. All rights reserved.</p>
-  </footer>
+  <!-- ─── FOOTER ─── -->
+<footer role="contentinfo">
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <a class="logo" href="/">FeedPreview</a>
+      <p>The free social media post preview tool for creators, marketers, and brands who want to perfect every post before publishing.</p>
+      <div class="social-links" aria-label="Social media links">
+        <a href="#" class="social-link" aria-label="Twitter">𝕏</a>
+        <a href="#" class="social-link" aria-label="Instagram">📸</a>
+        <a href="#" class="social-link" aria-label="LinkedIn">in</a>
+        <a href="#" class="social-link" aria-label="GitHub">⌥</a>
+      </div>
+    </div>
+
+    <div class="footer-widget">
+      <h4>Popular Tools</h4>
+      <ul>
+        <li><a href="instagram-post-preview">Instagram Post Preview</a></li>
+        <li><a href="facebook-post-preview">Facebook Post Preview</a></li>
+        <li><a href="twitter-post-preview">Twitter / X Post Preview</a></li>
+        <li><a href="linkedin-post-preview">LinkedIn Post Preview</a></li>
+        <li><a href="tiktok-post-preview">TikTok Post Preview</a></li>
+        <li><a href="youtube-post-preview">YouTube Post Preview</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-widget">
+      <h4>Resources</h4>
+      <ul>
+        <li><a href="#how">How It Works</a></li>
+        <li><a href="#faq">FAQ</a></li>
+        <li><a href="#features">Features</a></li>        
+        <li><a href="blog">Blog</a></li>        
+      </ul>
+    </div>
+
+    <div class="footer-widget">
+      <h4>Legal</h4>
+      <ul>
+        <li><a href="privacy">Privacy Policy</a></li>
+        <li><a href="terms">Terms of Service</a></li>
+        <li><a href="cookie">Cookie Policy</a></li>
+        <li><a href="contact">Contact Us</a></li>
+        <li><a href="sitemap.xml">Sitemap</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <p>© 2026 <a href="/">FeedPreview</a>. Free social media preview tools.</p>
+    <p>Made with ♥ for creators everywhere</p>
+  </div>
+</footer>
 
 </body>
 </html>
