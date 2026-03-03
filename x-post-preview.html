@@ -17,13 +17,13 @@
   <meta name="keywords" content="Twitter post preview, X post preview, tweet preview tool, Twitter simulator, preview tweet, X post generator, tweet mockup, social media preview tool" />
   <meta name="author" content="FeedPreview" />
   <meta name="robots" content="index, follow" />
-  <link rel="canonical" href="https://feedpreview.github.io/x-post/" />  
+  <link rel="canonical" href="https://feedpreview.github.io/x-post-preview/" />  
 
   <!-- Open Graph -->
   <meta property="og:type" content="website" />
   <meta property="og:title" content="Twitter / X Post Preview Tool – Free Live Preview | FeedPreview" />
   <meta property="og:description" content="See exactly how your tweet or X post will look before publishing. Customize photos, polls, threads, replies, verified badges and more." />
-  <meta property="og:url" content="https://feedpreview.github.io/x-post/" />
+  <meta property="og:url" content="https://feedpreview.github.io/x-post-preview/" />
   <meta property="og:image" content="https://feedpreview.github.io/og-twitter.jpg" />
   <meta property="og:site_name" content="FeedPreview" />
 
@@ -40,7 +40,7 @@
     "@type": "BreadcrumbList",
     "itemListElement": [
       { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://feedpreview.github.io/" },
-      { "@type": "ListItem", "position": 2, "name": "Twitter / X Preview", "item": "https://feedpreview.github.io/x-post/" }
+      { "@type": "ListItem", "position": 2, "name": "Twitter / X Preview", "item": "https://feedpreview.github.io/x-post-preview/" }
     ]
   }
   </script>
@@ -51,7 +51,7 @@
     "@context": "https://schema.org",
     "@type": "WebApplication",
     "name": "Twitter / X Post Preview Tool",
-    "url": "https://feedpreview.github.io/x-post/",
+    "url": "https://feedpreview.github.io/x-post-preview/",
     "description": "A free browser-based tool to preview Twitter/X posts before publishing. Supports multiple photos, polls, threads, quote tweets, verified badges, and screenshot download.",
     "applicationCategory": "UtilitiesApplication",
     "operatingSystem": "Web",
@@ -2276,7 +2276,7 @@ function takeScreenshot() {
     logging: false
   }).then(canvas => {
     const a = document.createElement('a');
-    a.download = 'twitter-x-post-preview.png';
+    a.download = 'twitter-x-post-preview-preview.png';
     a.href = canvas.toDataURL('image/png');
     a.click();
     showToast('✅ Screenshot downloaded!');
