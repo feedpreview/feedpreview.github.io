@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+
+    <!-- Homepage -->
+    <url>
+        <loc>https://feedpreview.github.io/</loc>
+        <lastmod>2026-04-14</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>1.0</priority>
+    </url>
+
+    <!-- X / Twitter Post Preview -->
+    <url>
+        <loc>https://feedpreview.github.io/x-post</loc>
+        <lastmod>2026-04-14</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+    </url>
+
+    <!-- Facebook Post Preview -->
+    <url>
+        <loc>https://feedpreview.github.io/fb-post-preview</loc>
+        <lastmod>2026-04-14</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+    </url>
+
+    <!-- LinkedIn Post Preview -->
+    <url>
+        <loc>https://feedpreview.github.io/linkedin-post-preview</loc>
+        <lastmod>2026-04-14</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+    </url>
+
+    <!-- Reddit Post Preview -->
+    <url>
+        <loc>https://feedpreview.github.io/reddit-post-preview</loc>
+        <lastmod>2026-04-14</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+    <!-- YouTube Thumbnail Preview -->
+    <url>
+        <loc>https://feedpreview.github.io/youtube-thumbnail-preview</loc>
+        <lastmod>2026-04-14</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+</urlset>
