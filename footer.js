@@ -40,46 +40,53 @@ const footerHTML = `
   }
 </style>
 
-<footer>
+<footer role="contentinfo">
   <div class="footer-grid">
     <div class="footer-brand">
-      <a href="/" class="logo">FeedPreview</a>
-      <p>The ultimate toolkit for social media managers and creators to preview content before it goes live.</p>
-      <div class="social-links">
-        <a href="#" class="social-link">TW</a>
-        <a href="#" class="social-link">IG</a>
-        <a href="#" class="social-link">LI</a>
+      <a class="logo" href="/">FeedPreview</a>
+      <p>The free social media post preview tool for creators, marketers, and brands who want to perfect every post before publishing.</p>
+      <div class="social-links" aria-label="Social media links">        
+        <a href="https://github.com/feedpreview/feedpreview.github.io" class="social-link" aria-label="GitHub">⌥</a>
       </div>
     </div>
+
     <div class="footer-widget">
-      <h4>Tools</h4>
+      <h4>Popular Tools</h4>
       <ul>
-        <li><a href="/instagram">Instagram Preview</a></li>
-        <li><a href="/facebook">Facebook Preview</a></li>
-        <li><a href="/tiktok">TikTok Preview</a></li>
+        <li><a href="instagram-post-preview">Instagram Post Preview</a></li>
+        <li><a href="fb-post-preview">Facebook Post Preview</a></li>
+        <li><a href="x-post">Twitter / X Post Preview</a></li>
+        <li><a href="linkedin-post-preview">LinkedIn Post Preview</a></li>
+        <li><a href="tiktok-post-preview">TikTok Post Preview</a></li>
+        <li><a href="youtube-post-preview">YouTube Post Preview</a></li>
       </ul>
     </div>
+
     <div class="footer-widget">
-      <h4>Company</h4>
+      <h4>Resources</h4>
       <ul>
-        <li><a href="/about">About Us</a></li>
-        <li><a href="/blog">Resources</a></li>
-        <li><a href="/contact">Support</a></li>
+        <li><a href="#how">How It Works</a></li>
+        <li><a href="#faq">FAQ</a></li>
+        <li><a href="#features">Features</a></li>        
+        <li><a href="blog">Blog</a></li>        
       </ul>
     </div>
+
     <div class="footer-widget">
       <h4>Legal</h4>
       <ul>
-        <li><a href="/privacy">Privacy Policy</a></li>
-        <li><a href="/terms">Terms of Service</a></li>
+        <li><a href="privacy">Privacy Policy</a></li>
+        <li><a href="terms">Terms of Service</a></li>
+        <li><a href="cookie">Cookie Policy</a></li>
+        <li><a href="contact">Contact Us</a></li>
+        <li><a href="sitemap.xml">Sitemap</a></li>
       </ul>
     </div>
   </div>
+
   <div class="footer-bottom">
-    <p>&copy; 2024 FeedPreview. All rights reserved.</p>
-    <div>
-      <a href="#">Status</a> &bull; <a href="#">Sitemap</a>
-    </div>
+    <p>© 2026 <a href="/">FeedPreview</a>. Free social media preview tools.</p>
+    <p>Made with ♥ for creators everywhere</p>
   </div>
 </footer>
 `;
